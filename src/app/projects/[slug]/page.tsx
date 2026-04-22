@@ -3,6 +3,13 @@ import { notFound } from "next/navigation";
 import { getProject, projects } from "@/data/projects";
 import { ProjectGallery } from "@/components/ProjectGallery";
 
+const getStatusBadge = (status: "live" | "wip" | "building") => {
+  if (status === "live") return { label: "LIVE", className: "bg-green-500" };
+  if (status === "building")
+    return { label: "BUILDING", className: "bg-rose-500" };
+  return { label: "WIP", className: "bg-red-500" };
+};
+
 export async function generateStaticParams() {
   return projects.map((p) => ({ slug: p.slug }));
 }
@@ -29,6 +36,7 @@ export default async function ProjectPage({
   const { slug } = await params;
   const project = getProject(slug);
   if (!project) notFound();
+  const badge = getStatusBadge(project.status);
 
   return (
     <div className="flex min-h-screen justify-center bg-white px-4 py-10">
@@ -45,11 +53,9 @@ export default async function ProjectPage({
           <div className="flex items-center gap-3">
             <h1 className="text-4xl font-bold text-zinc-900">{project.name}</h1>
             <span
-              className={`rounded-md px-2 py-0.5 text-[10px] font-bold tracking-wide text-white ${
-                project.status === "live" ? "bg-green-500" : "bg-red-500"
-              }`}
+              className={`rounded-md px-2 py-0.5 text-[10px] font-bold tracking-wide text-white ${badge.className}`}
             >
-              {project.status === "live" ? "LIVE" : "WIP"}
+              {badge.label}
             </span>
           </div>
           <p className="mt-2 text-lg text-zinc-600">{project.tagline}</p>
