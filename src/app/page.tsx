@@ -1,8 +1,10 @@
-"use client";
+﻿"use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { MapPin } from "lucide-react";
 import { useState } from "react";
+import { projects } from "@/data/projects";
 
 const IconGithub = () => (
   <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
@@ -112,13 +114,87 @@ function SocialButton({
   );
 }
 
+/* ─── Projects ──────────────────────────────────────────────────── */
+function ProjectCard({ project }: { project: (typeof projects)[number] }) {
+  return (
+    <Link
+      href={`/projects/${project.slug}`}
+      className="group flex flex-col overflow-hidden rounded-xl border border-zinc-200 bg-white transition hover:border-zinc-300 hover:shadow-md"
+    >
+      <div className="relative aspect-16/10 w-full overflow-hidden bg-zinc-100">
+        <Image
+          src={project.cover}
+          alt={project.name}
+          fill
+          sizes="(max-width: 768px) 100vw, 50vw"
+          className="object-cover transition-transform duration-500 group-hover:scale-105"
+        />
+      </div>
+
+      <div className="flex flex-1 flex-col gap-2 p-5">
+        <div className="flex items-center gap-2">
+          <p className="text-base font-semibold text-zinc-900">
+            {project.name}
+          </p>
+          <span
+            className={`rounded-md px-2 py-0.5 text-[10px] font-bold tracking-wide text-white ${
+              project.status === "live" ? "bg-green-500" : "bg-red-500"
+            }`}
+          >
+            {project.status === "live" ? "LIVE" : "WIP"}
+          </span>
+        </div>
+
+        <p className="text-sm leading-relaxed text-zinc-600">
+          {project.tagline}
+        </p>
+
+        <span className="mt-auto pt-3 text-sm text-zinc-500 transition group-hover:text-zinc-900">
+          View Project ↗
+        </span>
+      </div>
+    </Link>
+  );
+}
+
+function ProjectsSection() {
+  return (
+    <section className="mt-10">
+      <div className="mb-5 flex items-center justify-between">
+        <h2 className="text-2xl font-bold text-zinc-900">All Projects</h2>
+        <a
+          href="https://github.com/"
+          target="_blank"
+          rel="noreferrer"
+          className="text-zinc-400 transition hover:text-zinc-700"
+          aria-label="GitHub"
+        >
+          <IconGithub />
+        </a>
+      </div>
+
+      <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+        {projects.map((p) => (
+          <ProjectCard key={p.slug} project={p} />
+        ))}
+      </div>
+
+      <div className="mt-6 flex justify-center">
+        <Link
+          href="/projects"
+          className="rounded-full border border-zinc-300 px-5 py-2 text-sm text-zinc-700 transition hover:border-zinc-500 hover:bg-zinc-50"
+        >
+          View All →
+        </Link>
+      </div>
+    </section>
+  );
+}
 
 /* ─── Skills ────────────────────────────────────────────────────── */
 const SKILLS = [
   {
     name: "JavaScript",
-    color: "#F7DF1E",
-    bg: "#1a1a1a",
     icon: (
       <svg width="16" height="16" viewBox="0 0 32 32" fill="none">
         <rect width="32" height="32" rx="3" fill="#F7DF1E" />
@@ -130,8 +206,6 @@ const SKILLS = [
   },
   {
     name: "TypeScript",
-    color: "#3178C6",
-    bg: "#fff",
     icon: (
       <svg width="16" height="16" viewBox="0 0 32 32" fill="none">
         <rect width="32" height="32" rx="3" fill="#3178C6" />
@@ -143,8 +217,6 @@ const SKILLS = [
   },
   {
     name: "Node.js",
-    color: "#339933",
-    bg: "#fff",
     icon: (
       <svg width="16" height="16" viewBox="0 0 32 32" fill="none">
         <circle cx="16" cy="16" r="15" fill="#339933" />
@@ -156,48 +228,18 @@ const SKILLS = [
   },
   {
     name: "React",
-    color: "#61DAFB",
-    bg: "#1a1a1a",
     icon: (
       <svg width="16" height="16" viewBox="0 0 32 32" fill="none">
         <circle cx="16" cy="16" r="15" fill="#1a1a1a" />
         <circle cx="16" cy="16" r="3" fill="#61DAFB" />
-        <ellipse
-          cx="16"
-          cy="16"
-          rx="13"
-          ry="5"
-          stroke="#61DAFB"
-          strokeWidth="1.5"
-          fill="none"
-        />
-        <ellipse
-          cx="16"
-          cy="16"
-          rx="13"
-          ry="5"
-          stroke="#61DAFB"
-          strokeWidth="1.5"
-          fill="none"
-          transform="rotate(60 16 16)"
-        />
-        <ellipse
-          cx="16"
-          cy="16"
-          rx="13"
-          ry="5"
-          stroke="#61DAFB"
-          strokeWidth="1.5"
-          fill="none"
-          transform="rotate(120 16 16)"
-        />
+        <ellipse cx="16" cy="16" rx="13" ry="5" stroke="#61DAFB" strokeWidth="1.5" fill="none" />
+        <ellipse cx="16" cy="16" rx="13" ry="5" stroke="#61DAFB" strokeWidth="1.5" fill="none" transform="rotate(60 16 16)" />
+        <ellipse cx="16" cy="16" rx="13" ry="5" stroke="#61DAFB" strokeWidth="1.5" fill="none" transform="rotate(120 16 16)" />
       </svg>
     ),
   },
   {
     name: "Next.js",
-    color: "#000",
-    bg: "#fff",
     icon: (
       <svg width="16" height="16" viewBox="0 0 32 32" fill="none">
         <circle cx="16" cy="16" r="15" fill="#000" />
@@ -209,69 +251,37 @@ const SKILLS = [
   },
   {
     name: "Tailwind CSS",
-    color: "#06B6D4",
-    bg: "#fff",
     icon: (
       <svg width="16" height="16" viewBox="0 0 32 32" fill="none">
-        <path
-          d="M16 7c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.9.225 1.55.88 2.27 1.61C17.67 12.85 19.1 14.4 22 14.4c3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.9-.225-1.55-.88-2.27-1.61C20.33 8.55 18.9 7 16 7zm-6 9.6c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.9.225 1.55.88 2.27 1.61C11.67 22.45 13.1 24 16 24c3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.9-.225-1.55-.88-2.27-1.61C14.33 18.15 12.9 16.6 10 16.6z"
-          fill="#06B6D4"
-        />
+        <path d="M16 7c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.9.225 1.55.88 2.27 1.61C17.67 12.85 19.1 14.4 22 14.4c3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.9-.225-1.55-.88-2.27-1.61C20.33 8.55 18.9 7 16 7zm-6 9.6c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.9.225 1.55.88 2.27 1.61C11.67 22.45 13.1 24 16 24c3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.9-.225-1.55-.88-2.27-1.61C14.33 18.15 12.9 16.6 10 16.6z" fill="#06B6D4" />
       </svg>
     ),
   },
   {
     name: "MongoDB",
-    color: "#47A248",
-    bg: "#fff",
     icon: (
       <svg width="16" height="16" viewBox="0 0 32 32" fill="none">
-        <path
-          d="M16 2C16 2 9 10 9 18a7 7 0 0 0 6 6.9V28h2v-3.1A7 7 0 0 0 23 18C23 10 16 2 16 2z"
-          fill="#47A248"
-        />
+        <path d="M16 2C16 2 9 10 9 18a7 7 0 0 0 6 6.9V28h2v-3.1A7 7 0 0 0 23 18C23 10 16 2 16 2z" fill="#47A248" />
       </svg>
     ),
   },
   {
     name: "Git",
-    color: "#F05032",
-    bg: "#fff",
     icon: (
       <svg width="16" height="16" viewBox="0 0 32 32" fill="none">
-        <path
-          d="M29.47 14.53 17.47 2.53a1.8 1.8 0 0 0-2.54 0L12.4 5.07l3.2 3.2a2.14 2.14 0 0 1 2.71 2.73l3.08 3.08a2.14 2.14 0 1 1-1.28 1.28l-2.88-2.88v7.56a2.14 2.14 0 1 1-1.76-.07V12.3a2.14 2.14 0 0 1-1.16-2.81L11.1 6.34 2.53 14.9a1.8 1.8 0 0 0 0 2.54l12 12a1.8 1.8 0 0 0 2.54 0l12.4-12.4a1.8 1.8 0 0 0 0-2.51z"
-          fill="#F05032"
-        />
+        <path d="M29.47 14.53 17.47 2.53a1.8 1.8 0 0 0-2.54 0L12.4 5.07l3.2 3.2a2.14 2.14 0 0 1 2.71 2.73l3.08 3.08a2.14 2.14 0 1 1-1.28 1.28l-2.88-2.88v7.56a2.14 2.14 0 1 1-1.76-.07V12.3a2.14 2.14 0 0 1-1.16-2.81L11.1 6.34 2.53 14.9a1.8 1.8 0 0 0 0 2.54l12 12a1.8 1.8 0 0 0 2.54 0l12.4-12.4a1.8 1.8 0 0 0 0-2.51z" fill="#F05032" />
       </svg>
     ),
   },
   {
     name: "Java",
-    color: "#ED8B00",
-    bg: "#fff",
     icon: (
       <svg width="16" height="16" viewBox="0 0 32 32" fill="none">
-        <path
-          d="M12.2 22.5s-1.3.75.9 1c2.7.3 4.1.26 7.1-.3 0 0 .8.5 1.9.93-6.7 2.88-15.2-.17-9.9-1.63zM11.3 19.1s-1.4 1.05 .75 1.27c2.8.27 5 .3 8.8-.4 0 0 .55.56 1.43.87-7.8 2.28-16.5.18-11-1.74z"
-          fill="#ED8B00"
-        />
-        <path
-          d="M17.7 13.3c1.59 1.83-.42 3.47-.42 3.47s4.04-2.08 2.18-4.69c-1.73-2.44-3.06-3.65 4.13-7.83 0 0-11.29 2.82-5.89 9.05z"
-          fill="#ED8B00"
-        />
-        <path
-          d="M25.4 24.7s.96.8-1.06 1.41c-3.84 1.16-15.98 1.51-19.36.05-1.21-.53 1.06-1.26 1.78-1.41.74-.16 1.17-.13 1.17-.13-1.35-.95-8.72 1.87-3.74 2.67 13.56 2.2 24.72-.99 21.21-2.59zM12.8 15.7s-6.17 1.47-2.19 2c1.68.22 5.03.17 8.15-.08 2.55-.21 5.11-.66 5.11-.66s-.9.38-1.55.83c-6.27 1.65-18.38.88-14.9-.8 2.94-1.42 5.38-1.29 5.38-1.29z"
-          fill="#ED8B00"
-        />
-        <path
-          d="M22.4 20.6c6.38-3.31 3.43-6.5 1.37-6.07-.5.1-.73.2-.73.2s.19-.29.54-.41c4.04-1.42 7.14 4.19-1.31 6.41 0 0 .1-.09.13-.13z"
-          fill="#ED8B00"
-        />
-        <path
-          d="M19.4 2s3.53 3.53-3.35 8.96c-5.52 4.36-1.26 6.84 0 9.68-3.22-2.9-5.58-5.46-4-7.83C14.28 9.38 20.98 7.63 19.4 2z"
-          fill="#ED8B00"
-        />
+        <path d="M12.2 22.5s-1.3.75.9 1c2.7.3 4.1.26 7.1-.3 0 0 .8.5 1.9.93-6.7 2.88-15.2-.17-9.9-1.63zM11.3 19.1s-1.4 1.05 .75 1.27c2.8.27 5 .3 8.8-.4 0 0 .55.56 1.43.87-7.8 2.28-16.5.18-11-1.74z" fill="#ED8B00" />
+        <path d="M17.7 13.3c1.59 1.83-.42 3.47-.42 3.47s4.04-2.08 2.18-4.69c-1.73-2.44-3.06-3.65 4.13-7.83 0 0-11.29 2.82-5.89 9.05z" fill="#ED8B00" />
+        <path d="M25.4 24.7s.96.8-1.06 1.41c-3.84 1.16-15.98 1.51-19.36.05-1.21-.53 1.06-1.26 1.78-1.41.74-.16 1.17-.13 1.17-.13-1.35-.95-8.72 1.87-3.74 2.67 13.56 2.2 24.72-.99 21.21-2.59zM12.8 15.7s-6.17 1.47-2.19 2c1.68.22 5.03.17 8.15-.08 2.55-.21 5.11-.66 5.11-.66s-.9.38-1.55.83c-6.27 1.65-18.38.88-14.9-.8 2.94-1.42 5.38-1.29 5.38-1.29z" fill="#ED8B00" />
+        <path d="M22.4 20.6c6.38-3.31 3.43-6.5 1.37-6.07-.5.1-.73.2-.73.2s.19-.29.54-.41c4.04-1.42 7.14 4.19-1.31 6.41 0 0 .1-.09.13-.13z" fill="#ED8B00" />
+        <path d="M19.4 2s3.53 3.53-3.35 8.96c-5.52 4.36-1.26 6.84 0 9.68-3.22-2.9-5.58-5.46-4-7.83C14.28 9.38 20.98 7.63 19.4 2z" fill="#ED8B00" />
       </svg>
     ),
   },
@@ -310,7 +320,9 @@ function QuoteSection() {
           &ldquo;A man who is master of patience is master of everything
           else.&rdquo;
         </p>
-        <footer className="mt-3 text-xs text-zinc-500">— George Savile</footer>
+        <footer className="mt-3 text-xs text-zinc-500">
+          — George Savile
+        </footer>
       </blockquote>
     </section>
   );
@@ -318,8 +330,8 @@ function QuoteSection() {
 
 /* ─── Footer ────────────────────────────────────────────────────── */
 const NAV_LINKS = [
-  { label: "Home", href: "#" },
-  { label: "Projects", href: "#" },
+  { label: "Home", href: "/" },
+  { label: "Projects", href: "/projects" },
   { label: "Blog", href: "#" },
   { label: "Sponsors", href: "#" },
   { label: "Open Source", href: "#" },
@@ -327,21 +339,9 @@ const NAV_LINKS = [
 ];
 
 const CONNECT_ICONS = [
-  {
-    label: "GitHub",
-    href: "https://github.com/",
-    icon: <IconGithub />,
-  },
-  {
-    label: "LinkedIn",
-    href: "https://linkedin.com/",
-    icon: <IconLinkedin />,
-  },
-  {
-    label: "X / Twitter",
-    href: "https://twitter.com/",
-    icon: <IconTwitter />,
-  },
+  { label: "GitHub", href: "https://github.com/", icon: <IconGithub /> },
+  { label: "LinkedIn", href: "https://linkedin.com/", icon: <IconLinkedin /> },
+  { label: "X / Twitter", href: "https://twitter.com/", icon: <IconTwitter /> },
   {
     label: "Email",
     href: "mailto:matias@example.com",
@@ -357,25 +357,23 @@ function Footer() {
   return (
     <footer className="mt-10 border-t border-zinc-200 pt-8">
       <div className="flex flex-col gap-6 sm:flex-row sm:justify-between">
-        {/* Navigate */}
         <div>
           <p className="mb-3 text-xs font-semibold tracking-widest text-blue-500 uppercase">
             Navigate
           </p>
           <div className="grid grid-cols-3 gap-x-4 gap-y-1 sm:grid-cols-2">
             {NAV_LINKS.map((l) => (
-              <a
+              <Link
                 key={l.label}
                 href={l.href}
                 className="text-sm text-blue-500 transition hover:text-blue-700"
               >
                 {l.label}
-              </a>
+              </Link>
             ))}
           </div>
         </div>
 
-        {/* Connect */}
         <div>
           <p className="mb-3 text-xs font-semibold tracking-widest text-blue-500 uppercase">
             Connect
@@ -397,206 +395,15 @@ function Footer() {
         </div>
       </div>
 
-      {/* Bottom bar */}
       <div className="mt-6 flex flex-col items-start justify-between gap-2 sm:flex-row sm:items-center">
         <p className="text-xs text-blue-500">
           © 2026 Matias Rau Bekerman. All rights reserved.
         </p>
-        <p className="text-xs text-zinc-400">You&apos;re the — visitor</p>
+        <p className="text-xs text-zinc-400">
+          You&apos;re the — visitor
+        </p>
       </div>
     </footer>
-  );
-}
-
-/* ─── Projects ──────────────────────────────────────────────────── */
-type Project = {
-  slug: string;
-  status: "live" | "wip";
-  name: JSX.Element;
-  description: JSX.Element;
-  href: string;
-  bg: string;
-  previewText: string;
-};
-
-const PROJECTS: Project[] = [
-  {
-    slug: "sum-o",
-    status: "live",
-    name: (
-      <>
-        SUM<span className="text-orange-500">-o</span>
-      </>
-    ),
-    description: (
-      <>
-        Just{" "}
-        <span className="text-green-600">copy-paste a link</span> and get one
-        line summaries of{" "}
-        <span className="text-blue-500">LinkedIn posts</span>
-      </>
-    ),
-    href: "#",
-    bg: "from-zinc-900 to-zinc-800",
-    previewText: "Get the gist, skip the scroll",
-  },
-  {
-    slug: "chron",
-    status: "live",
-    name: <span className="text-orange-500">CHRON</span>,
-    description: (
-      <>
-        The days you don&apos;t{" "}
-        <span className="text-orange-400">count</span> are the days that{" "}
-        <span className="text-orange-400">count</span> the most.
-      </>
-    ),
-    href: "#",
-    bg: "from-zinc-900 to-red-950",
-    previewText: "EVERY DAY COUNTS.",
-  },
-  {
-    slug: "drift",
-    status: "wip",
-    name: (
-      <>
-        <span className="text-red-500">Drift</span> — Anonymous Video Chat
-      </>
-    ),
-    description: (
-      <>
-        <span className="text-purple-400">Talk to Strangers</span>,{" "}
-        <span className="text-purple-400">Stay Anonymous</span>. Connect
-        through{" "}
-        <span className="text-green-500">text, voice, and video</span> — no
-        sign up required.
-      </>
-    ),
-    href: "#",
-    bg: "from-purple-950 to-zinc-900",
-    previewText: "Talk to Strangers. Stay Anonymous.",
-  },
-  {
-    slug: "brainly",
-    status: "live",
-    name: (
-      <>
-        <span className="text-green-500">Brainly</span> — Your Second Brain
-      </>
-    ),
-    description: (
-      <>
-        A centralized hub for managing digital content from{" "}
-        <span className="text-blue-400">Twitter, YouTube, Instagram</span>, and{" "}
-        <span className="text-blue-400">LinkedIn</span>.
-      </>
-    ),
-    href: "#",
-    bg: "from-blue-950 to-zinc-900",
-    previewText: "Your Second Brain",
-  },
-  {
-    slug: "cac-url",
-    status: "live",
-    name: <span className="text-green-500">CAC-URL</span>,
-    description: (
-      <>
-        URL shortener tool for creating{" "}
-        <span className="text-green-500">short, shareable links</span>
-      </>
-    ),
-    href: "#",
-    bg: "from-zinc-900 to-indigo-950",
-    previewText: "Shorten Your Links",
-  },
-  {
-    slug: "the-daily-dev",
-    status: "live",
-    name: <span className="text-green-500">TheDailyDev</span>,
-    description: (
-      <>
-        A centralized{" "}
-        <span className="text-green-500">developer news platform</span> built
-        to reduce noise and surface only{" "}
-        <span className="text-green-500">high-signal content</span>.
-      </>
-    ),
-    href: "#",
-    bg: "from-zinc-100 to-white",
-    previewText: "THE DAILY DEV",
-  },
-];
-
-function ProjectCard({ project }: { project: Project }) {
-  const isDark = !project.bg.includes("zinc-100");
-  return (
-    <div className="flex flex-col overflow-hidden rounded-xl border border-zinc-200 bg-white transition hover:shadow-sm">
-      {/* Screenshot placeholder */}
-      <div
-        className={`relative flex h-36 items-center justify-center bg-linear-to-br ${project.bg} px-4`}
-      >
-        <p
-          className={`text-center text-sm font-semibold ${isDark ? "text-white/70" : "text-zinc-700"}`}
-        >
-          {project.previewText}
-        </p>
-      </div>
-
-      {/* Card body */}
-      <div className="flex flex-1 flex-col gap-2 p-4">
-        <div className="flex items-center gap-2">
-          <span
-            className={`h-2 w-2 shrink-0 rounded-full ${project.status === "live" ? "bg-green-500" : "bg-red-500"}`}
-          />
-          <p className="text-sm font-semibold text-zinc-900">{project.name}</p>
-        </div>
-        <p className="text-xs leading-relaxed text-zinc-600">
-          {project.description}
-        </p>
-        <a
-          href={project.href}
-          target="_blank"
-          rel="noreferrer"
-          className="mt-auto pt-1 text-xs text-zinc-400 transition hover:text-zinc-700"
-        >
-          View Project ↗
-        </a>
-      </div>
-    </div>
-  );
-}
-
-function ProjectsSection() {
-  return (
-    <section className="mt-10">
-      <div className="mb-4 flex items-center justify-between">
-        <h2 className="text-base font-semibold text-zinc-900">projects</h2>
-        <a
-          href="https://github.com/"
-          target="_blank"
-          rel="noreferrer"
-          className="text-zinc-400 transition hover:text-zinc-700"
-          aria-label="GitHub"
-        >
-          <IconGithub />
-        </a>
-      </div>
-
-      <div className="grid grid-cols-2 gap-3">
-        {PROJECTS.map((p) => (
-          <ProjectCard key={p.slug} project={p} />
-        ))}
-      </div>
-
-      <div className="mt-5 flex justify-center">
-        <a
-          href="#"
-          className="rounded-full border border-zinc-300 px-5 py-2 text-sm text-zinc-700 transition hover:border-zinc-500 hover:bg-zinc-50"
-        >
-          View All →
-        </a>
-      </div>
-    </section>
   );
 }
 
@@ -650,30 +457,35 @@ export default function Home() {
                   />
                 </svg>
               </h1>
-              <p className="text-sm text-zinc-500">full-stack developer</p>
+              <p className="text-sm font-medium text-zinc-900">
+                full-stack developer and systems engineer coming soon
+              </p>
             </div>
           </div>
         </section>
 
         {/* Bio */}
-        <section className="mt-5 space-y-3 text-sm leading-relaxed text-zinc-700">
+        <section className="mt-5 space-y-3 text-sm leading-relaxed text-zinc-900">
           <p>
-            Hey, Matias acá. Un full-stack developer que disfruta construir
-            productos web limpios y bien pensados. Me enfoco en experiencias
-            donde el diseño, la funcionalidad y los detalles pequeños importan.
+            Hey, Matias here, a full-stack developer who loves building fun,
+            cool projects with a creative mindset. I focus on creating clean,
+            modern experiences where design, functionality, and the smallest
+            details matter.
           </p>
           <p>
-            Actualmente perfeccionando mi stack para que la tecnología no sea
-            una limitación. Siempre abierto a colaborar y aprender.
+            Currently sharpening my skills so technology never becomes a
+            limitation. I am always open to collaborating, building, and
+            learning. Coming soon: Systems Information Engineering graduate.
           </p>
-          <p className="text-zinc-500">
-            Buenos Aires, Argentina · contacto:{" "}
+          <p className="text-zinc-900">
+            Based in La Plata, Argentina. Reach me at{" "}
             <a
-              href="mailto:matias@example.com"
-              className="underline underline-offset-2 hover:text-zinc-800"
+              href="mailto:bekermanmatias@gmail.com"
+              className="underline underline-offset-2 hover:text-zinc-700"
             >
-              matias@example.com
+              bekermanmatias@gmail.com
             </a>
+            . 5th year student of Systems Information Engineering at UTN FRLP.
           </p>
         </section>
 
@@ -682,21 +494,6 @@ export default function Home() {
           {SOCIAL_LINKS.map((s) => (
             <SocialButton key={s.label} {...s} />
           ))}
-          {/* Pinterest-style icon only */}
-          <a
-            href="#"
-            className="flex h-[30px] w-[30px] items-center justify-center rounded-full bg-red-600 text-white transition hover:bg-red-700"
-            aria-label="Pinterest"
-          >
-            <svg
-              width="12"
-              height="12"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-            >
-              <path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 0 1 .083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z" />
-            </svg>
-          </a>
         </section>
 
         {/* Projects */}
