@@ -17,6 +17,36 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    slug: "solar360",
+    name: "Solar360",
+    tagline:
+      "Simulador web de paneles solares que estima generación, ahorro y retorno de inversión a partir de datos climáticos reales y un modelo matemático de clusters.",
+    description:
+      "Solar360 es un simulador interactivo que permite a cualquier persona calcular cuánta energía podría generar una instalación fotovoltaica en su domicilio, cuánto dinero ahorraría por mes y en cuántos años recuperaría la inversión. El usuario marca su ubicación en un mapa, ingresa su consumo y el precio del kWh, ajusta el porcentaje de cobertura que quiere cubrir y elige el ángulo de instalación; con esos datos la app devuelve una simulación completa con gráficos mensuales, flujo de fondos, impacto ambiental y un reporte descargable en PDF. Apunta a usuarios finales que están evaluando instalar paneles, pero también a estudiantes e instaladores que quieren entender, visualmente, cómo se comporta un sistema solar en una ubicación concreta de Argentina.\n\nFue el trabajo práctico final de la materia Análisis Numérico en la UTN FRLP, por lo que la app es en esencia una aplicación práctica de todo lo visto en la cursada. El modelo se construyó a partir de un dataset experimental entregado por el profesor, con mediciones reales de temperatura de celda, inclinación e irradiancia. Sobre ese dataset aplicamos análisis numérico de punta a punta: limpieza y análisis estadístico de los datos, clustering en seis grupos operativos según temperatura (10°, 20°, 30°) e inclinación (20°, 45°), y una regresión lineal por mínimos cuadrados dentro de cada cluster para obtener los coeficientes β₁ que representan la eficiencia efectiva del panel en esas condiciones. El modelo final queda como P = β₁ · G (potencia generada en función de la irradiancia solar), con un performance ratio PR = 0.85 que absorbe las pérdidas del sistema.\n\nA eso se suman la integración con la NASA POWER API (y OpenMeteo como fallback) para traer irradiancia y temperatura históricas del punto exacto seleccionado, la geocodificación con Nominatim, y un modelo económico BOS (Balance of System) para estimar costos iniciales, flujo de fondos acumulado y ROI. Todo el cálculo se valida contra el dataset original antes de mostrarse al usuario, y los resultados se presentan en cinco pestañas: general, análisis energético, impacto ambiental, análisis financiero y ficha técnica de la instalación.",
+    status: "live",
+    cover: "/360solar/1.png",
+    gallery: [
+      "/360solar/1.png",
+      "/360solar/2.png",
+      "/360solar/3.png",
+      "/360solar/4.png",
+      "/360solar/5.png",
+    ],
+    url: "https://360solar.vercel.app",
+    tech: [
+      "JavaScript",
+      "Vite",
+      "HTML",
+      "CSS",
+      "Chart.js",
+      "Leaflet",
+      "jsPDF",
+      "NASA POWER API",
+      "OpenMeteo",
+    ],
+    year: 2025,
+  },
+  {
     slug: "cafecerca",
     name: "Café Cerca",
     tagline:
