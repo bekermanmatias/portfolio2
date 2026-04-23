@@ -17,6 +17,27 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    slug: "eventhub",
+    name: "EventHub",
+    tagline:
+      "Plataforma web para descubrir y gestionar eventos, de forma sencilla y organizada.",
+    description:
+      "EventHub es una plataforma web pensada para quienes organizan o descubren eventos: permite crear y administrar eventos, listarlos en un dashboard, ver el detalle de cada uno y saber de forma clara cuánto falta para que empiece. Apunta tanto a organizadores que necesitan mantener su catálogo ordenado como a usuarios que quieren explorar solamente los eventos vigentes sin tener que filtrar manualmente los que ya pasaron.\n\nFue un proyecto grupal para una materia en la que partimos de un código base ya existente, por lo que buena parte del trabajo consistió en leer, entender y adaptarnos a decisiones de diseño tomadas por otros antes de sumar funcionalidad nueva. Dentro del equipo mis aportes principales fueron: el módulo de cuenta regresiva hasta la fecha del evento (con el cálculo dinámico de días, horas, minutos y segundos y su integración en la vista de detalle), el diseño de las nuevas entidades y relaciones agregadas a la base de datos, ocultar por defecto los eventos pasados en el dashboard para que el listado siempre muestre lo relevante primero, y toda la configuración de Docker y del pipeline de CI/CD para que el proyecto se pueda levantar y desplegar de forma reproducible. Todo el desarrollo se acompañó con tests automáticos (unitarios y end-to-end con Playwright) para validar cada flujo crítico de la aplicación.",
+    status: "live",
+    cover: "/eventhub/1.png",
+    gallery: ["/eventhub/1.png", "/eventhub/2.png"],
+    tech: [
+      "Python 3",
+      "Django",
+      "SQLite",
+      "Playwright",
+      "Ruff",
+      "Docker",
+      "CI/CD",
+    ],
+    year: 2025,
+  },
+  {
     slug: "solar360",
     name: "Solar360",
     tagline:
@@ -96,7 +117,6 @@ export const projects: Project[] = [
     ],
     tech: [
       "React",
-      "React Router",
       "SCSS",
       "Node.js",
       "Express",
