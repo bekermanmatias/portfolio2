@@ -10,6 +10,13 @@ const getStatusBadge = (status: "live" | "wip" | "building") => {
   return { label: "WIP", className: "bg-red-500" };
 };
 
+function getYoutubeId(url: string): string | null {
+  const match = url.match(
+    /(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([A-Za-z0-9_-]{11})/,
+  );
+  return match ? match[1] : null;
+}
+
 export async function generateStaticParams() {
   return projects.map((p) => ({ slug: p.slug }));
 }
@@ -106,10 +113,27 @@ export default async function ProjectPage({
         </section>
 
         {/* Gallery */}
-        <section className="space-y-4">
+        <section className="mb-10 space-y-4">
           <h2 className="text-xl font-semibold text-zinc-900">Gallery</h2>
           <ProjectGallery images={project.gallery} alt={project.name} />
         </section>
+
+        {/* Demo video */}
+        {project.demo && getYoutubeId(project.demo) && (
+          <section className="space-y-4">
+            <h2 className="text-xl font-semibold text-zinc-900">Demo</h2>
+            <div className="relative aspect-video w-full overflow-hidden rounded-xl border border-zinc-200 bg-black shadow-sm">
+              <iframe
+                src={`https://www.youtube.com/embed/${getYoutubeId(project.demo)}`}
+                title={`${project.name} demo`}
+                className="absolute inset-0 h-full w-full"
+                loading="lazy"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+              />
+            </div>
+          </section>
+        )}
       </main>
     </div>
   );

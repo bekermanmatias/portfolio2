@@ -10,11 +10,36 @@ export type Project = {
   gallery: string[];
   url?: string;
   repo?: string;
+  demo?: string;
   tech: string[];
   year: number;
 };
 
 export const projects: Project[] = [
+  {
+    slug: "cafecerca",
+    name: "Café Cerca",
+    tagline:
+      "App móvil para descubrir cafeterías cerca tuyo, guardar favoritas, organizar visitas con amigos y compartir reseñas auténticas.",
+    description:
+      "Café Cerca es una aplicación móvil pensada para quienes disfrutan salir a tomar un café y quieren descubrir lugares nuevos sin depender de reviews anónimas en mapas genéricos. La app permite explorar cafeterías cercanas, ver sus etiquetas y características, guardar las favoritas, y sobre todo compartir experiencias reales con otros usuarios: reseñas escritas, visitas individuales o compartidas con amigos, comentarios y likes. Apunta a una comunidad joven que disfruta explorar la ciudad, coordinar planes con amigos y dejar su opinión honesta sobre cada lugar que visitan.\n\nFue un proyecto grupal para la materia Aplicaciones Móviles en la UTN FRLP. Dentro del equipo me encargué de todo el sistema de reseñas y de la lógica de visitas compartidas entre múltiples usuarios: la creación y edición de reseñas, cómo se asocian a cada visita, cómo se vinculan a varios usuarios a la vez en visitas grupales (invitaciones, aceptación, respuesta con reseña), y toda la coordinación que implica que más de una persona pueda participar, opinar y dejar su review sobre una misma salida sin pisarse la información.",
+    status: "live",
+    cover: "/cafecerca/1.png",
+    gallery: ["/cafecerca/1.png", "/cafecerca/2.png", "/cafecerca/3.png"],
+    demo: "https://youtu.be/Lvv-yJC69rc",
+    tech: [
+      "React Native",
+      "Expo",
+      "TypeScript",
+      "Node.js",
+      "Express",
+      "Sequelize",
+      "MySQL",
+      "JWT",
+      "Cloudinary",
+    ],
+    year: 2025,
+  },
   {
     slug: "odontapp",
     name: "OdontApp",
