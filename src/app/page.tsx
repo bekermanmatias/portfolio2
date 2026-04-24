@@ -2,8 +2,6 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { MapPin } from "lucide-react";
-import { useState } from "react";
 import { projects } from "@/data/projects";
 
 const getStatusBadge = (status: "live" | "wip" | "building") => {
@@ -19,105 +17,44 @@ const IconGithub = () => (
   </svg>
 );
 
-const IconTwitter = () => (
-  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-  </svg>
-);
-
 const IconLinkedin = () => (
   <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
     <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
   </svg>
 );
 
-const IconYoutube = () => (
-  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
-  </svg>
-);
+const GITHUB_URL = "https://github.com/bekermanmatias";
+const LINKEDIN_URL =
+  "https://www.linkedin.com/in/matias-rau-bekerman-32a614199/?skipRedirect=true";
 
 const SOCIAL_LINKS = [
   {
     label: "github",
-    href: "https://github.com/",
+    href: GITHUB_URL,
     icon: <IconGithub />,
-    hasTooltip: true,
-  },
-  {
-    label: "twitter",
-    href: "https://twitter.com/",
-    icon: <IconTwitter />,
-    hasTooltip: false,
   },
   {
     label: "linkedin",
-    href: "https://linkedin.com/",
+    href: LINKEDIN_URL,
     icon: <IconLinkedin />,
-    hasTooltip: false,
-  },
-  {
-    label: "youtube",
-    href: "https://youtube.com/",
-    icon: <IconYoutube />,
-    hasTooltip: false,
   },
 ];
-
-function GithubTooltip() {
-  return (
-    <div className="absolute bottom-full left-0 z-10 mb-2 w-52 rounded-xl border border-zinc-200 bg-white p-3 shadow-md">
-      <div className="flex items-center gap-2">
-        <div className="flex h-8 w-8 items-center justify-center rounded-full bg-zinc-900 text-xs font-semibold text-white">
-          MR
-        </div>
-        <div className="leading-tight">
-          <p className="text-xs font-semibold text-zinc-900">Matias Rau</p>
-          <p className="text-xs text-zinc-500">@matiasrau</p>
-        </div>
-      </div>
-      <p className="mt-2 text-xs text-zinc-600">full-stack developer</p>
-      <div className="mt-1 flex items-center gap-1 text-xs text-zinc-500">
-        <MapPin size={10} />
-        <span>Buenos Aires, Argentina</span>
-      </div>
-      <div className="mt-2 flex gap-3 text-xs text-zinc-700">
-        <span>
-          <strong className="text-zinc-900">24</strong> Repositories
-        </span>
-        <span>
-          <strong className="text-zinc-900">14</strong> Followers
-        </span>
-      </div>
-    </div>
-  );
-}
 
 function SocialButton({
   label,
   href,
   icon,
-  hasTooltip,
 }: (typeof SOCIAL_LINKS)[number]) {
-  const [open, setOpen] = useState(false);
-
   return (
-    <div
-      className="relative"
-      onMouseEnter={() => hasTooltip && setOpen(true)}
-      onMouseLeave={() => setOpen(false)}
+    <a
+      href={href}
+      target="_blank"
+      rel="noreferrer"
+      className="flex items-center gap-1.5 rounded-md border border-zinc-300 px-3 py-1.5 text-xs font-medium text-zinc-700 transition hover:border-zinc-400 hover:bg-zinc-50"
     >
-      <a
-        href={href}
-        target="_blank"
-        rel="noreferrer"
-        className="flex items-center gap-1.5 rounded-md border border-zinc-300 px-3 py-1.5 text-xs font-medium text-zinc-700 transition hover:border-zinc-400 hover:bg-zinc-50"
-      >
-        {icon}
-        {label}
-      </a>
-      {hasTooltip && open && <GithubTooltip />}
-    </div>
+      {icon}
+      {label}
+    </a>
   );
 }
 
@@ -170,7 +107,7 @@ function ProjectsSection() {
       <div className="mb-5 flex items-center justify-between">
         <h2 className="text-2xl font-bold text-zinc-900">All Projects</h2>
         <a
-          href="https://github.com/"
+          href={GITHUB_URL}
           target="_blank"
           rel="noreferrer"
           className="text-zinc-400 transition hover:text-zinc-700"
@@ -181,7 +118,7 @@ function ProjectsSection() {
       </div>
 
       <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
-        {projects.map((p) => (
+        {projects.slice(0, 4).map((p) => (
           <ProjectCard key={p.slug} project={p} />
         ))}
       </div>
@@ -346,12 +283,11 @@ const NAV_LINKS = [
 ];
 
 const CONNECT_ICONS = [
-  { label: "GitHub", href: "https://github.com/", icon: <IconGithub /> },
-  { label: "LinkedIn", href: "https://linkedin.com/", icon: <IconLinkedin /> },
-  { label: "X / Twitter", href: "https://twitter.com/", icon: <IconTwitter /> },
+  { label: "GitHub", href: GITHUB_URL, icon: <IconGithub /> },
+  { label: "LinkedIn", href: LINKEDIN_URL, icon: <IconLinkedin /> },
   {
     label: "Email",
-    href: "mailto:matias@example.com",
+    href: "mailto:bekermanmatias@gmail.com",
     icon: (
       <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
         <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z" />
@@ -474,25 +410,36 @@ export default function Home() {
         {/* Bio */}
         <section className="mt-5 space-y-3 text-sm leading-relaxed text-zinc-900">
           <p>
-            Hey, Matias here, a full-stack developer who loves building fun,
-            cool projects with a creative mindset. I focus on creating clean,
-            modern experiences where design, functionality, and the smallest
-            details matter.
+            Hey, I&apos;m Matias, I build modern, scalable web applications
+            with a mindset oriented toward creative problem-solving and clean
+            architecture. As a 5th-year Systems Engineering student, I don&apos;t
+            just write code; I design systems.
           </p>
           <p>
-            Currently sharpening my skills so technology never becomes a
-            limitation. I am always open to collaborating, building, and
-            learning. Coming soon: Systems Information Engineering graduate.
+            My technical stack covers the entire development lifecycle—from
+            crafting pixel-perfect interfaces with React and Astro, to modeling
+            complex relational databases in PostgreSQL and building secure
+            APIs. To stay ahead of industry standards, I actively incorporate
+            Cloud technologies and AI-driven solutions into my workflows,
+            ensuring my projects are efficient, scalable, and innovative.
           </p>
-          <p className="text-zinc-900">
-            Based in La Plata, Argentina. Reach me at{" "}
-            <a
-              href="mailto:bekermanmatias@gmail.com"
-              className="underline underline-offset-2 hover:text-zinc-700"
-            >
-              bekermanmatias@gmail.com
-            </a>
-            . 5th year student of Systems Information Engineering at UTN FRLP.
+          <p>
+            I am a proactive team player, comfortable working with Agile
+            methodologies, version control (Git), and continuous integration.
+            Whether it&apos;s optimizing a database query or designing a
+            seamless user experience, I care about the smallest details.
+          </p>
+          <p className="flex flex-wrap items-center gap-x-3 gap-y-1 text-zinc-900">
+            <span>📍 La Plata, Argentina</span>
+            <span>
+              📩{" "}
+              <a
+                href="mailto:bekermanmatias@gmail.com"
+                className="underline underline-offset-2 hover:text-zinc-700"
+              >
+                bekermanmatias@gmail.com
+              </a>
+            </span>
           </p>
         </section>
 
