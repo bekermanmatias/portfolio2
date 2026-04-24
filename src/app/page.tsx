@@ -3,13 +3,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import { projects } from "@/data/projects";
-
-const getStatusBadge = (status: "live" | "wip" | "building") => {
-  if (status === "live") return { label: "LIVE", className: "bg-green-500" };
-  if (status === "building")
-    return { label: "BUILDING", className: "bg-rose-500" };
-  return { label: "WIP", className: "bg-red-500" };
-};
+import { useLanguage } from "@/lib/i18n";
+import { ProjectCard } from "@/components/ProjectCard";
+import { SkillsSection } from "@/components/Skills";
 
 const IconGithub = () => (
   <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
@@ -23,33 +19,43 @@ const IconLinkedin = () => (
   </svg>
 );
 
+const IconResume = () => (
+  <svg
+    width="14"
+    height="14"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+    <polyline points="14 2 14 8 20 8" />
+    <line x1="12" y1="18" x2="12" y2="12" />
+    <polyline points="9 15 12 18 15 15" />
+  </svg>
+);
+
 const GITHUB_URL = "https://github.com/bekermanmatias";
 const LINKEDIN_URL =
   "https://www.linkedin.com/in/matias-rau-bekerman-32a614199/?skipRedirect=true";
+const RESUME_URL = "/MATIAS%20RAU%20BEKERMAN.pdf";
 
-const SOCIAL_LINKS = [
-  {
-    label: "github",
-    href: GITHUB_URL,
-    icon: <IconGithub />,
-  },
-  {
-    label: "linkedin",
-    href: LINKEDIN_URL,
-    icon: <IconLinkedin />,
-  },
-];
+type SocialLink = {
+  label: string;
+  href: string;
+  icon: React.ReactNode;
+  download?: boolean;
+};
 
-function SocialButton({
-  label,
-  href,
-  icon,
-}: (typeof SOCIAL_LINKS)[number]) {
+function SocialButton({ label, href, icon, download }: SocialLink) {
   return (
     <a
       href={href}
-      target="_blank"
-      rel="noreferrer"
+      {...(download
+        ? { download: "MATIAS RAU BEKERMAN.pdf" }
+        : { target: "_blank", rel: "noreferrer" })}
       className="flex items-center gap-1.5 rounded-md border border-zinc-300 px-3 py-1.5 text-xs font-medium text-zinc-700 transition hover:border-zinc-400 hover:bg-zinc-50"
     >
       {icon}
@@ -58,54 +64,14 @@ function SocialButton({
   );
 }
 
-/* ─── Projects ──────────────────────────────────────────────────── */
-function ProjectCard({ project }: { project: (typeof projects)[number] }) {
-  const badge = getStatusBadge(project.status);
-
-  return (
-    <Link
-      href={`/projects/${project.slug}`}
-      className="group flex flex-col overflow-hidden rounded-xl border border-zinc-200 bg-white transition hover:border-zinc-300 hover:shadow-md"
-    >
-      <div className="relative aspect-16/10 w-full overflow-hidden bg-zinc-100">
-        <Image
-          src={project.cover}
-          alt={project.name}
-          fill
-          sizes="(max-width: 768px) 100vw, 50vw"
-          className="object-cover transition-transform duration-500 group-hover:scale-105"
-        />
-      </div>
-
-      <div className="flex flex-1 flex-col gap-2 p-5">
-        <div className="flex items-center gap-2">
-          <p className="text-base font-semibold text-zinc-900">
-            {project.name}
-          </p>
-          <span
-            className={`rounded-md px-2 py-0.5 text-[10px] font-bold tracking-wide text-white ${badge.className}`}
-          >
-            {badge.label}
-          </span>
-        </div>
-
-        <p className="text-sm leading-relaxed text-zinc-600">
-          {project.tagline}
-        </p>
-
-        <span className="mt-auto pt-3 text-sm text-zinc-500 transition group-hover:text-zinc-900">
-          View Project ↗
-        </span>
-      </div>
-    </Link>
-  );
-}
-
 function ProjectsSection() {
+  const { t } = useLanguage();
   return (
     <section className="mt-10">
       <div className="mb-5 flex items-center justify-between">
-        <h2 className="text-2xl font-bold text-zinc-900">All Projects</h2>
+        <h2 className="text-2xl font-bold text-zinc-900">
+          {t("projects.section.all")}
+        </h2>
         <a
           href={GITHUB_URL}
           target="_blank"
@@ -128,128 +94,8 @@ function ProjectsSection() {
           href="/projects"
           className="rounded-full border border-zinc-300 px-5 py-2 text-sm text-zinc-700 transition hover:border-zinc-500 hover:bg-zinc-50"
         >
-          View All →
+          {t("projects.viewAll")}
         </Link>
-      </div>
-    </section>
-  );
-}
-
-/* ─── Skills ────────────────────────────────────────────────────── */
-const SKILLS = [
-  {
-    name: "JavaScript",
-    icon: (
-      <svg width="16" height="16" viewBox="0 0 32 32" fill="none">
-        <rect width="32" height="32" rx="3" fill="#F7DF1E" />
-        <text x="4" y="24" fontSize="16" fontWeight="bold" fill="#1a1a1a">
-          JS
-        </text>
-      </svg>
-    ),
-  },
-  {
-    name: "TypeScript",
-    icon: (
-      <svg width="16" height="16" viewBox="0 0 32 32" fill="none">
-        <rect width="32" height="32" rx="3" fill="#3178C6" />
-        <text x="3" y="24" fontSize="14" fontWeight="bold" fill="white">
-          TS
-        </text>
-      </svg>
-    ),
-  },
-  {
-    name: "Node.js",
-    icon: (
-      <svg width="16" height="16" viewBox="0 0 32 32" fill="none">
-        <circle cx="16" cy="16" r="15" fill="#339933" />
-        <text x="7" y="21" fontSize="13" fontWeight="bold" fill="white">
-          N
-        </text>
-      </svg>
-    ),
-  },
-  {
-    name: "React",
-    icon: (
-      <svg width="16" height="16" viewBox="0 0 32 32" fill="none">
-        <circle cx="16" cy="16" r="15" fill="#1a1a1a" />
-        <circle cx="16" cy="16" r="3" fill="#61DAFB" />
-        <ellipse cx="16" cy="16" rx="13" ry="5" stroke="#61DAFB" strokeWidth="1.5" fill="none" />
-        <ellipse cx="16" cy="16" rx="13" ry="5" stroke="#61DAFB" strokeWidth="1.5" fill="none" transform="rotate(60 16 16)" />
-        <ellipse cx="16" cy="16" rx="13" ry="5" stroke="#61DAFB" strokeWidth="1.5" fill="none" transform="rotate(120 16 16)" />
-      </svg>
-    ),
-  },
-  {
-    name: "Next.js",
-    icon: (
-      <svg width="16" height="16" viewBox="0 0 32 32" fill="none">
-        <circle cx="16" cy="16" r="15" fill="#000" />
-        <text x="8" y="22" fontSize="16" fontWeight="bold" fill="white">
-          N
-        </text>
-      </svg>
-    ),
-  },
-  {
-    name: "Tailwind CSS",
-    icon: (
-      <svg width="16" height="16" viewBox="0 0 32 32" fill="none">
-        <path d="M16 7c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.9.225 1.55.88 2.27 1.61C17.67 12.85 19.1 14.4 22 14.4c3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.9-.225-1.55-.88-2.27-1.61C20.33 8.55 18.9 7 16 7zm-6 9.6c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.9.225 1.55.88 2.27 1.61C11.67 22.45 13.1 24 16 24c3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.9-.225-1.55-.88-2.27-1.61C14.33 18.15 12.9 16.6 10 16.6z" fill="#06B6D4" />
-      </svg>
-    ),
-  },
-  {
-    name: "MongoDB",
-    icon: (
-      <svg width="16" height="16" viewBox="0 0 32 32" fill="none">
-        <path d="M16 2C16 2 9 10 9 18a7 7 0 0 0 6 6.9V28h2v-3.1A7 7 0 0 0 23 18C23 10 16 2 16 2z" fill="#47A248" />
-      </svg>
-    ),
-  },
-  {
-    name: "Git",
-    icon: (
-      <svg width="16" height="16" viewBox="0 0 32 32" fill="none">
-        <path d="M29.47 14.53 17.47 2.53a1.8 1.8 0 0 0-2.54 0L12.4 5.07l3.2 3.2a2.14 2.14 0 0 1 2.71 2.73l3.08 3.08a2.14 2.14 0 1 1-1.28 1.28l-2.88-2.88v7.56a2.14 2.14 0 1 1-1.76-.07V12.3a2.14 2.14 0 0 1-1.16-2.81L11.1 6.34 2.53 14.9a1.8 1.8 0 0 0 0 2.54l12 12a1.8 1.8 0 0 0 2.54 0l12.4-12.4a1.8 1.8 0 0 0 0-2.51z" fill="#F05032" />
-      </svg>
-    ),
-  },
-  {
-    name: "Java",
-    icon: (
-      <svg width="16" height="16" viewBox="0 0 32 32" fill="none">
-        <path d="M12.2 22.5s-1.3.75.9 1c2.7.3 4.1.26 7.1-.3 0 0 .8.5 1.9.93-6.7 2.88-15.2-.17-9.9-1.63zM11.3 19.1s-1.4 1.05 .75 1.27c2.8.27 5 .3 8.8-.4 0 0 .55.56 1.43.87-7.8 2.28-16.5.18-11-1.74z" fill="#ED8B00" />
-        <path d="M17.7 13.3c1.59 1.83-.42 3.47-.42 3.47s4.04-2.08 2.18-4.69c-1.73-2.44-3.06-3.65 4.13-7.83 0 0-11.29 2.82-5.89 9.05z" fill="#ED8B00" />
-        <path d="M25.4 24.7s.96.8-1.06 1.41c-3.84 1.16-15.98 1.51-19.36.05-1.21-.53 1.06-1.26 1.78-1.41.74-.16 1.17-.13 1.17-.13-1.35-.95-8.72 1.87-3.74 2.67 13.56 2.2 24.72-.99 21.21-2.59zM12.8 15.7s-6.17 1.47-2.19 2c1.68.22 5.03.17 8.15-.08 2.55-.21 5.11-.66 5.11-.66s-.9.38-1.55.83c-6.27 1.65-18.38.88-14.9-.8 2.94-1.42 5.38-1.29 5.38-1.29z" fill="#ED8B00" />
-        <path d="M22.4 20.6c6.38-3.31 3.43-6.5 1.37-6.07-.5.1-.73.2-.73.2s.19-.29.54-.41c4.04-1.42 7.14 4.19-1.31 6.41 0 0 .1-.09.13-.13z" fill="#ED8B00" />
-        <path d="M19.4 2s3.53 3.53-3.35 8.96c-5.52 4.36-1.26 6.84 0 9.68-3.22-2.9-5.58-5.46-4-7.83C14.28 9.38 20.98 7.63 19.4 2z" fill="#ED8B00" />
-      </svg>
-    ),
-  },
-];
-
-function SkillBadge({ name, icon }: (typeof SKILLS)[number]) {
-  return (
-    <div className="flex items-center gap-2 rounded-lg border border-zinc-200 px-4 py-2.5 text-sm font-medium text-zinc-700 transition hover:border-zinc-300 hover:bg-zinc-50">
-      {icon}
-      {name}
-    </div>
-  );
-}
-
-function SkillsSection() {
-  return (
-    <section className="mt-10">
-      <h2 className="mb-4 text-base font-semibold text-zinc-900">
-        skills &amp; technologies
-      </h2>
-      <div className="grid grid-cols-3 gap-2">
-        {SKILLS.map((s) => (
-          <SkillBadge key={s.name} {...s} />
-        ))}
       </div>
     </section>
   );
@@ -257,14 +103,14 @@ function SkillsSection() {
 
 /* ─── Quote ─────────────────────────────────────────────────────── */
 function QuoteSection() {
+  const { t } = useLanguage();
   return (
     <section className="mt-10">
-      <blockquote className="rounded-xl bg-zinc-50 px-8 py-7 text-center">
-        <p className="text-sm italic leading-relaxed text-zinc-700">
-          &ldquo;A man who is master of patience is master of everything
-          else.&rdquo;
+      <blockquote className="rounded-xl bg-zinc-50 px-8 py-9 text-center">
+        <p className="text-lg italic leading-relaxed text-zinc-700 sm:text-xl">
+          &ldquo;{t("quote.text")}&rdquo;
         </p>
-        <footer className="mt-3 text-xs text-zinc-500">
+        <footer className="mt-4 text-sm text-zinc-500">
           — George Savile
         </footer>
       </blockquote>
@@ -274,20 +120,27 @@ function QuoteSection() {
 
 /* ─── Footer ────────────────────────────────────────────────────── */
 const NAV_LINKS = [
-  { label: "Home", href: "/" },
-  { label: "Projects", href: "/projects" },
-  { label: "Blog", href: "#" },
-  { label: "Sponsors", href: "#" },
-  { label: "Open Source", href: "#" },
-  { label: "Resume", href: "#" },
+  { key: "nav.home", href: "/" },
+  { key: "nav.projects", href: "/projects" },
 ];
 
 const CONNECT_ICONS = [
-  { label: "GitHub", href: GITHUB_URL, icon: <IconGithub /> },
-  { label: "LinkedIn", href: LINKEDIN_URL, icon: <IconLinkedin /> },
+  {
+    label: "GitHub",
+    href: GITHUB_URL,
+    external: true,
+    icon: <IconGithub />,
+  },
+  {
+    label: "LinkedIn",
+    href: LINKEDIN_URL,
+    external: true,
+    icon: <IconLinkedin />,
+  },
   {
     label: "Email",
     href: "mailto:bekermanmatias@gmail.com",
+    external: false,
     icon: (
       <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
         <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z" />
@@ -297,39 +150,55 @@ const CONNECT_ICONS = [
 ];
 
 function Footer() {
+  const { t } = useLanguage();
   return (
     <footer className="mt-10 border-t border-zinc-200 pt-8">
       <div className="flex flex-col gap-6 sm:flex-row sm:justify-between">
         <div>
-          <p className="mb-3 text-xs font-semibold tracking-widest text-blue-500 uppercase">
-            Navigate
+          <p className="mb-3 text-xs font-semibold tracking-widest text-zinc-900 uppercase">
+            {t("footer.navigate")}
           </p>
-          <div className="grid grid-cols-3 gap-x-4 gap-y-1 sm:grid-cols-2">
-            {NAV_LINKS.map((l) => (
-              <Link
-                key={l.label}
-                href={l.href}
-                className="text-sm text-blue-500 transition hover:text-blue-700"
-              >
-                {l.label}
-              </Link>
-            ))}
+          <div className="flex flex-col gap-1">
+            {NAV_LINKS.map((l) =>
+              l.key === "nav.home" ? (
+                <Link
+                  key={l.key}
+                  href={l.href}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    window.scrollTo({ top: 0, behavior: "smooth" });
+                  }}
+                  className="text-sm text-zinc-900 transition hover:text-zinc-600"
+                >
+                  {t(l.key)}
+                </Link>
+              ) : (
+                <Link
+                  key={l.key}
+                  href={l.href}
+                  className="text-sm text-zinc-900 transition hover:text-zinc-600"
+                >
+                  {t(l.key)}
+                </Link>
+              ),
+            )}
           </div>
         </div>
 
         <div>
-          <p className="mb-3 text-xs font-semibold tracking-widest text-blue-500 uppercase">
-            Connect
+          <p className="mb-3 text-xs font-semibold tracking-widest text-zinc-900 uppercase">
+            {t("footer.connect")}
           </p>
           <div className="flex gap-2">
             {CONNECT_ICONS.map((c) => (
               <a
                 key={c.label}
                 href={c.href}
-                target="_blank"
-                rel="noreferrer"
+                {...(c.external
+                  ? { target: "_blank", rel: "noreferrer" }
+                  : {})}
                 aria-label={c.label}
-                className="flex h-9 w-9 items-center justify-center rounded-lg border border-zinc-200 text-zinc-600 transition hover:border-zinc-400 hover:bg-zinc-50"
+                className="flex h-9 w-9 items-center justify-center rounded-lg border border-zinc-200 text-zinc-900 transition hover:border-zinc-400 hover:bg-zinc-50"
               >
                 {c.icon}
               </a>
@@ -338,13 +207,8 @@ function Footer() {
         </div>
       </div>
 
-      <div className="mt-6 flex flex-col items-start justify-between gap-2 sm:flex-row sm:items-center">
-        <p className="text-xs text-blue-500">
-          © 2026 Matias Rau Bekerman. All rights reserved.
-        </p>
-        <p className="text-xs text-zinc-400">
-          You&apos;re the — visitor
-        </p>
+      <div className="mt-6">
+        <p className="text-xs text-zinc-900">{t("footer.rights")}</p>
       </div>
     </footer>
   );
@@ -352,6 +216,8 @@ function Footer() {
 
 /* ─── Page ──────────────────────────────────────────────────────── */
 export default function Home() {
+  const { t } = useLanguage();
+
   return (
     <div className="flex min-h-screen justify-center bg-white px-4 py-10">
       <main className="w-full max-w-3xl">
@@ -388,7 +254,7 @@ export default function Home() {
                   height="16"
                   viewBox="0 0 16 16"
                   fill="none"
-                  aria-label="verificado"
+                  aria-label={t("header.verified")}
                 >
                   <circle cx="8" cy="8" r="8" fill="#3B82F6" />
                   <path
@@ -401,7 +267,7 @@ export default function Home() {
                 </svg>
               </h1>
               <p className="text-sm font-medium text-zinc-900">
-                full-stack developer and systems engineer coming soon
+                {t("header.title")}
               </p>
             </div>
           </div>
@@ -409,45 +275,40 @@ export default function Home() {
 
         {/* Bio */}
         <section className="mt-5 space-y-3 text-sm leading-relaxed text-zinc-900">
-          <p>
-            Hey, I&apos;m Matias, I build modern, scalable web applications
-            with a mindset oriented toward creative problem-solving and clean
-            architecture. As a 5th-year Systems Engineering student, I don&apos;t
-            just write code; I design systems.
-          </p>
-          <p>
-            My technical stack covers the entire development lifecycle—from
-            crafting pixel-perfect interfaces with React and Astro, to modeling
-            complex relational databases in PostgreSQL and building secure
-            APIs. To stay ahead of industry standards, I actively incorporate
-            Cloud technologies and AI-driven solutions into my workflows,
-            ensuring my projects are efficient, scalable, and innovative.
-          </p>
-          <p>
-            I am a proactive team player, comfortable working with Agile
-            methodologies, version control (Git), and continuous integration.
-            Whether it&apos;s optimizing a database query or designing a
-            seamless user experience, I care about the smallest details.
-          </p>
-          <p className="flex flex-wrap items-center gap-x-3 gap-y-1 text-zinc-900">
-            <span>📍 La Plata, Argentina</span>
-            <span>
-              📩{" "}
-              <a
-                href="mailto:bekermanmatias@gmail.com"
-                className="underline underline-offset-2 hover:text-zinc-700"
-              >
-                bekermanmatias@gmail.com
-              </a>
-            </span>
+          <p>{t("bio.p1")}</p>
+          <p>{t("bio.p2")}</p>
+          <p>{t("bio.p3")}</p>
+          <p className="text-zinc-900">
+            {t("bio.contactPrefix")} {t("bio.location")}.{" "}
+            {t("bio.contactReach")}{" "}
+            <a
+              href="mailto:bekermanmatias@gmail.com"
+              className="underline underline-offset-2 hover:text-zinc-700"
+            >
+              bekermanmatias@gmail.com
+            </a>
+            .
           </p>
         </section>
 
         {/* Social links */}
         <section className="mt-5 flex flex-wrap items-center gap-2">
-          {SOCIAL_LINKS.map((s) => (
-            <SocialButton key={s.label} {...s} />
-          ))}
+          <SocialButton
+            label="github"
+            href={GITHUB_URL}
+            icon={<IconGithub />}
+          />
+          <SocialButton
+            label="linkedin"
+            href={LINKEDIN_URL}
+            icon={<IconLinkedin />}
+          />
+          <SocialButton
+            label={t("social.resume")}
+            href={RESUME_URL}
+            icon={<IconResume />}
+            download
+          />
         </section>
 
         {/* Projects */}

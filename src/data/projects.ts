@@ -1,16 +1,19 @@
-export type ProjectStatus = "live" | "wip" | "building";
+export type ProjectStatus = "live" | "wip" | "building" | "closed";
+
+export type Localized = { en: string; es: string };
 
 export type Project = {
   slug: string;
   name: string;
-  tagline: string;
-  description: string;
+  tagline: Localized;
+  description: Localized;
   status: ProjectStatus;
   cover: string;
   gallery: string[];
   url?: string;
   repo?: string;
   demo?: string;
+  paper?: string;
   tech: string[];
   year: number;
 };
@@ -19,10 +22,14 @@ export const projects: Project[] = [
   {
     slug: "odontapp",
     name: "OdontApp",
-    tagline:
-      "Sistema integral de gestión para clínicas odontológicas: agenda, pacientes, historias clínicas y facturación en un solo lugar.",
-    description:
-      "OdontApp es un sistema pensado para clínicas y consultorios odontológicos que buscan ordenar su día a día sin depender de planillas sueltas ni agendas en papel. En una sola plataforma, el equipo administrativo y los profesionales pueden coordinar turnos, acceder rápidamente a la ficha del paciente, registrar la atención y llevar el control de la facturación. Apunta a clínicas con múltiples profesionales y recepcionistas que necesitan trabajar en simultáneo sin pisarse la información, manteniendo todo centralizado, visible y actualizado en tiempo real. La interfaz es clara y directa, para que cualquier persona del consultorio, incluso sin experiencia técnica, pueda usarla desde el primer día.\n\nFue un proyecto desarrollado en equipo junto a cuatro compañeros. Dentro del grupo me encargué del módulo de Agenda y de todo lo relacionado: la visualización por profesional y por rango horario, la gestión de disponibilidad, la creación y edición de turnos, los filtros por odontólogo, el control de choques de horarios y las reglas de negocio que hacen que la agenda se comporte como la necesita un consultorio real.",
+    tagline: {
+      en: "Comprehensive management system for dental clinics: scheduling, patients, medical records and billing in one place.",
+      es: "Sistema integral de gestión para clínicas odontológicas: agenda, pacientes, historias clínicas y facturación en un solo lugar.",
+    },
+    description: {
+      en: "OdontApp is a system designed for dental clinics and offices that want to organize their day-to-day operations without relying on loose spreadsheets or paper agendas. On a single platform, the administrative team and professionals can coordinate appointments, quickly access a patient's file, record treatments and keep track of billing. It targets clinics with multiple professionals and receptionists who need to work simultaneously without stepping on each other's information, keeping everything centralized, visible and updated in real time. The interface is clear and direct so anyone at the office, even without technical experience, can use it from day one.\n\nIt was a team project developed together with four classmates. Within the group I was in charge of the Scheduling module and everything related to it: the view by professional and by time range, availability management, appointment creation and editing, filters by dentist, time-clash control, and the business rules that make the schedule behave the way a real dental office needs.",
+      es: "OdontApp es un sistema pensado para clínicas y consultorios odontológicos que buscan ordenar su día a día sin depender de planillas sueltas ni agendas en papel. En una sola plataforma, el equipo administrativo y los profesionales pueden coordinar turnos, acceder rápidamente a la ficha del paciente, registrar la atención y llevar el control de la facturación. Apunta a clínicas con múltiples profesionales y recepcionistas que necesitan trabajar en simultáneo sin pisarse la información, manteniendo todo centralizado, visible y actualizado en tiempo real. La interfaz es clara y directa, para que cualquier persona del consultorio, incluso sin experiencia técnica, pueda usarla desde el primer día.\n\nFue un proyecto desarrollado en equipo junto a cuatro compañeros. Dentro del grupo me encargué del módulo de Agenda y de todo lo relacionado: la visualización por profesional y por rango horario, la gestión de disponibilidad, la creación y edición de turnos, los filtros por odontólogo, el control de choques de horarios y las reglas de negocio que hacen que la agenda se comporte como la necesita un consultorio real.",
+    },
     status: "building",
     cover: "/odontapp/1.png",
     gallery: [
@@ -54,10 +61,14 @@ export const projects: Project[] = [
   {
     slug: "solar360",
     name: "Solar360",
-    tagline:
-      "Simulador web de paneles solares que estima generación, ahorro y retorno de inversión a partir de datos climáticos reales y un modelo matemático de clusters.",
-    description:
-      "Solar360 es un simulador interactivo que permite a cualquier persona calcular cuánta energía podría generar una instalación fotovoltaica en su domicilio, cuánto dinero ahorraría por mes y en cuántos años recuperaría la inversión. El usuario marca su ubicación en un mapa, ingresa su consumo y el precio del kWh, ajusta el porcentaje de cobertura que quiere cubrir y elige el ángulo de instalación; con esos datos la app devuelve una simulación completa con gráficos mensuales, flujo de fondos, impacto ambiental y un reporte descargable en PDF. Apunta a usuarios finales que están evaluando instalar paneles, pero también a estudiantes e instaladores que quieren entender, visualmente, cómo se comporta un sistema solar en una ubicación concreta de Argentina.\n\nFue el trabajo práctico final de la materia Análisis Numérico en la UTN FRLP, por lo que la app es en esencia una aplicación práctica de todo lo visto en la cursada. El modelo se construyó a partir de un dataset experimental entregado por el profesor, con mediciones reales de temperatura de celda, inclinación e irradiancia. Sobre ese dataset aplicamos análisis numérico de punta a punta: limpieza y análisis estadístico de los datos, clustering en seis grupos operativos según temperatura (10°, 20°, 30°) e inclinación (20°, 45°), y una regresión lineal por mínimos cuadrados dentro de cada cluster para obtener los coeficientes β₁ que representan la eficiencia efectiva del panel en esas condiciones. El modelo final queda como P = β₁ · G (potencia generada en función de la irradiancia solar), con un performance ratio PR = 0.85 que absorbe las pérdidas del sistema.\n\nA eso se suman la integración con la NASA POWER API (y OpenMeteo como fallback) para traer irradiancia y temperatura históricas del punto exacto seleccionado, la geocodificación con Nominatim, y un modelo económico BOS (Balance of System) para estimar costos iniciales, flujo de fondos acumulado y ROI. Todo el cálculo se valida contra el dataset original antes de mostrarse al usuario, y los resultados se presentan en cinco pestañas: general, análisis energético, impacto ambiental, análisis financiero y ficha técnica de la instalación.",
+    tagline: {
+      en: "Web simulator for solar panels that estimates generation, savings and ROI using real climate data and a mathematical cluster-based model.",
+      es: "Simulador web de paneles solares que estima generación, ahorro y retorno de inversión a partir de datos climáticos reales y un modelo matemático de clusters.",
+    },
+    description: {
+      en: "Solar360 is an interactive simulator that lets anyone calculate how much energy a photovoltaic system could generate at their home, how much they would save per month and in how many years they would recover their investment. The user marks a location on a map, enters their consumption and tariff, picks the installation angle and gets a full simulation with monthly charts, cash flow, environmental impact and a downloadable PDF report.\n\nIt was the final project of the Numerical Analysis course at UTN FRLP and is documented in a scientific paper (available for download on this page). The mathematical model was built from an experimental dataset segmented into 6 operating clusters by ambient temperature and panel inclination, fitting a linear transfer function P = β₁·G in each one by Ordinary Least Squares (OLS), after comparing it against quadratic and exponential models using R² as the validation metric. At runtime, the simulator queries the NASA POWER API to fetch real monthly irradiance and temperature, iterates month by month to dimension the number of panels, and computes the financial (Payback) and environmental (CO₂ avoided, tree/car equivalents) models.",
+      es: "Solar360 es un simulador interactivo que permite a cualquier persona calcular cuánta energía podría generar una instalación fotovoltaica en su domicilio, cuánto ahorraría por mes y en cuántos años recuperaría la inversión. El usuario marca su ubicación en un mapa, ingresa su consumo y su tarifa, elige el ángulo de instalación y obtiene una simulación completa con gráficos mensuales, flujo de fondos, impacto ambiental y un reporte descargable en PDF.\n\nFue el trabajo práctico final de la materia Análisis Numérico en la UTN FRLP y está documentado en un paper científico (disponible para descargar desde esta página). El modelo matemático se construyó a partir de un dataset experimental segmentado en 6 clusters operativos según temperatura ambiente e inclinación del panel, ajustando en cada uno una función de transferencia lineal P = β₁·G mediante Mínimos Cuadrados Ordinarios (OLS), luego de compararla contra modelos cuadrático y exponencial usando R² como métrica de validación. En ejecución, el simulador consulta la API de NASA POWER para traer irradiancia y temperatura mensuales reales, itera mes a mes para dimensionar la cantidad de paneles y calcula los modelos financiero (Payback) y ambiental (CO₂ evitado, equivalencias en árboles y autos).",
+    },
     status: "live",
     cover: "/360solar/1.png",
     gallery: [
@@ -68,6 +79,7 @@ export const projects: Project[] = [
       "/360solar/5.png",
     ],
     url: "https://360solar.vercel.app",
+    paper: "/Paper_Simulador_Fotovoltaico_v3.pdf",
     tech: [
       "JavaScript",
       "Vite",
@@ -84,11 +96,15 @@ export const projects: Project[] = [
   {
     slug: "cafecerca",
     name: "Café Cerca",
-    tagline:
-      "App móvil para descubrir cafeterías cerca tuyo, guardar favoritas, organizar visitas con amigos y compartir reseñas auténticas.",
-    description:
-      "Café Cerca es una aplicación móvil pensada para quienes disfrutan salir a tomar un café y quieren descubrir lugares nuevos sin depender de reviews anónimas en mapas genéricos. La app permite explorar cafeterías cercanas, ver sus etiquetas y características, guardar las favoritas, y sobre todo compartir experiencias reales con otros usuarios: reseñas escritas, visitas individuales o compartidas con amigos, comentarios y likes. Apunta a una comunidad joven que disfruta explorar la ciudad, coordinar planes con amigos y dejar su opinión honesta sobre cada lugar que visitan.\n\nFue un proyecto grupal para la materia Aplicaciones Móviles en la UTN FRLP. Dentro del equipo me encargué de todo el sistema de reseñas y de la lógica de visitas compartidas entre múltiples usuarios: la creación y edición de reseñas, cómo se asocian a cada visita, cómo se vinculan a varios usuarios a la vez en visitas grupales (invitaciones, aceptación, respuesta con reseña), y toda la coordinación que implica que más de una persona pueda participar, opinar y dejar su review sobre una misma salida sin pisarse la información.",
-    status: "live",
+    tagline: {
+      en: "Mobile app to discover coffee shops near you, save favorites, organize visits with friends and share authentic reviews.",
+      es: "App móvil para descubrir cafeterías cerca tuyo, guardar favoritas, organizar visitas con amigos y compartir reseñas auténticas.",
+    },
+    description: {
+      en: "Café Cerca is a mobile app for people who enjoy going out for a coffee and want to discover new places without relying on anonymous reviews on generic maps. The app allows exploring nearby coffee shops, seeing their tags and features, saving favorites, and above all sharing real experiences with other users: written reviews, individual or shared visits with friends, comments and likes. It targets a young community that enjoys exploring the city, coordinating plans with friends and leaving honest opinions about every place they visit.\n\nIt was a team project for the Mobile Applications course at UTN FRLP. Within the team I was in charge of the entire review system and the shared-visit logic between multiple users: creating and editing reviews, how they are linked to each visit, how they are associated with several users at once in group visits (invitations, acceptance, response with a review), and all the coordination required for more than one person to participate, give their opinion and leave their own review about the same outing without stepping on each other's information.",
+      es: "Café Cerca es una aplicación móvil pensada para quienes disfrutan salir a tomar un café y quieren descubrir lugares nuevos sin depender de reviews anónimas en mapas genéricos. La app permite explorar cafeterías cercanas, ver sus etiquetas y características, guardar las favoritas, y sobre todo compartir experiencias reales con otros usuarios: reseñas escritas, visitas individuales o compartidas con amigos, comentarios y likes. Apunta a una comunidad joven que disfruta explorar la ciudad, coordinar planes con amigos y dejar su opinión honesta sobre cada lugar que visitan.\n\nFue un proyecto grupal para la materia Aplicaciones Móviles en la UTN FRLP. Dentro del equipo me encargué de todo el sistema de reseñas y de la lógica de visitas compartidas entre múltiples usuarios: la creación y edición de reseñas, cómo se asocian a cada visita, cómo se vinculan a varios usuarios a la vez en visitas grupales (invitaciones, aceptación, respuesta con reseña), y toda la coordinación que implica que más de una persona pueda participar, opinar y dejar su review sobre una misma salida sin pisarse la información.",
+    },
+    status: "closed",
     cover: "/cafecerca/1.png",
     gallery: ["/cafecerca/1.png", "/cafecerca/2.png", "/cafecerca/3.png"],
     demo: "https://youtu.be/Lvv-yJC69rc",
@@ -108,11 +124,15 @@ export const projects: Project[] = [
   {
     slug: "app-recetas",
     name: "App Recetas",
-    tagline:
-      "App móvil para descubrir, buscar y guardar recetas, con lista interactiva de ingredientes y búsqueda por lo que ya tenés en casa.",
-    description:
-      "App Recetas es una aplicación móvil para quienes les gusta cocinar pero no siempre saben qué preparar con lo que tienen en la alacena. La app permite buscar recetas por nombre o por ingredientes, ver el detalle completo de cada una (ingredientes, pasos y tiempos), guardar las favoritas y marcar qué ingredientes ya tiene el usuario para ver de un vistazo qué le falta. Incluye autenticación de usuarios, perfil, modo oscuro/claro y búsqueda sugerida a partir de los ingredientes disponibles. Apunta a usuarios que quieren aprovechar lo que tienen en casa y descubrir nuevas recetas sin tener que hacer una compra específica cada vez.\n\nFue un proyecto grupal para la materia Desarrollo de Aplicaciones Móviles. Dentro del equipo mi aporte estuvo centrado en todo el módulo de recetas: la pantalla de detalle con sus ingredientes y pasos, y sobre todo la lógica de marcar los ingredientes que el usuario ya tiene, persistiendo ese estado para que al volver a abrir la receta siga recordando lo que ya estaba tildado. Además integré la API externa de recetas que trae todo el contenido (nombre, imagen, ingredientes, medidas, instrucciones y categorías), normalizando la respuesta para adaptarla a la UI y combinándola con la base de datos propia donde se guardan favoritos, ingredientes marcados y datos del usuario.",
-    status: "live",
+    tagline: {
+      en: "Mobile app to discover, search and save recipes, with an interactive ingredient list and search based on what you already have at home.",
+      es: "App móvil para descubrir, buscar y guardar recetas, con lista interactiva de ingredientes y búsqueda por lo que ya tenés en casa.",
+    },
+    description: {
+      en: "App Recetas is a mobile app for people who love cooking but don't always know what to make with what they have in the pantry. The app lets you search recipes by name or ingredient, see the full detail of each one (ingredients, steps and times), save favorites, and mark which ingredients the user already has to see at a glance what's missing. It includes user authentication, profile, dark/light mode and suggested search based on available ingredients. It targets users who want to make the most of what they have at home and discover new recipes without having to do a specific shopping every time.\n\nIt was a team project for the Mobile Applications Development course. Within the team my contribution was focused on the entire recipes module: the detail screen with its ingredients and steps, and especially the logic for marking the ingredients the user already has, persisting that state so when they reopen the recipe it still remembers what was already checked. I also integrated the external recipes API that brings all the content (name, image, ingredients, measures, instructions and categories), normalizing the response to adapt it to the UI and combining it with the own database where favorites, marked ingredients and user data are stored.",
+      es: "App Recetas es una aplicación móvil para quienes les gusta cocinar pero no siempre saben qué preparar con lo que tienen en la alacena. La app permite buscar recetas por nombre o por ingredientes, ver el detalle completo de cada una (ingredientes, pasos y tiempos), guardar las favoritas y marcar qué ingredientes ya tiene el usuario para ver de un vistazo qué le falta. Incluye autenticación de usuarios, perfil, modo oscuro/claro y búsqueda sugerida a partir de los ingredientes disponibles. Apunta a usuarios que quieren aprovechar lo que tienen en casa y descubrir nuevas recetas sin tener que hacer una compra específica cada vez.\n\nFue un proyecto grupal para la materia Desarrollo de Aplicaciones Móviles. Dentro del equipo mi aporte estuvo centrado en todo el módulo de recetas: la pantalla de detalle con sus ingredientes y pasos, y sobre todo la lógica de marcar los ingredientes que el usuario ya tiene, persistiendo ese estado para que al volver a abrir la receta siga recordando lo que ya estaba tildado. Además integré la API externa de recetas que trae todo el contenido (nombre, imagen, ingredientes, medidas, instrucciones y categorías), normalizando la respuesta para adaptarla a la UI y combinándola con la base de datos propia donde se guardan favoritos, ingredientes marcados y datos del usuario.",
+    },
+    status: "closed",
     cover: "/app-recetas/1.png",
     gallery: [
       "/app-recetas/1.png",
@@ -135,11 +155,15 @@ export const projects: Project[] = [
   {
     slug: "raim",
     name: "RAIM",
-    tagline:
-      "Sistema web interno para gestionar incidencias, solicitudes y mejoras dentro de una organización, con trazabilidad completa de cada requerimiento.",
-    description:
-      "RAIM es una aplicación web para la gestión de requerimientos internos de una organización: incidencias, solicitudes y mejoras. Permite registrar cada pedido con un código único, clasificarlo por tipo, categoría, prioridad y estado, asignarlo a un responsable, seguir su avance con comentarios, adjuntar archivos y ver todo el historial desde un mismo lugar. Incluye además gestión básica de usuarios y departamentos para saber en todo momento quién creó, quién recibe y quién está trabajando cada ticket. Apunta a equipos internos que hoy resuelven estos pedidos por mail o chat y necesitan un flujo ordenado, con trazabilidad real de principio a fin.\n\nFue un proyecto grupal y dentro del equipo mi aporte estuvo centrado en toda la gestión de requerimientos end-to-end: el alta con su código único y la vinculación con los catálogos (estado, prioridad, tipo y categoría), las relaciones con otras entidades (usuario creador, responsable asignado, comentarios y adjuntos), y el listado con filtros combinables por estado, tipo, categoría y participación del usuario. También me encargué de la carga de archivos adjuntos y de toda la transformación previa a persistirlos en la base de datos: validación de tipo y tamaño, normalización del nombre, procesamiento del payload multipart y su vinculación tanto a requerimientos como a comentarios, asegurando que cada archivo quede asociado al registro correcto y se pueda recuperar desde el detalle.",
-    status: "live",
+    tagline: {
+      en: "Internal web system to manage incidents, requests and improvements within an organization, with full traceability for every requirement.",
+      es: "Sistema web interno para gestionar incidencias, solicitudes y mejoras dentro de una organización, con trazabilidad completa de cada requerimiento.",
+    },
+    description: {
+      en: "RAIM is a web application for managing internal requirements of an organization: incidents, requests and improvements. It lets you register each request with a unique code, classify it by type, category, priority and status, assign it to a responsible user, track its progress through comments, attach files and see the full history from one place. It also includes basic user and department management so you always know who created, who receives and who is working on each ticket. It targets internal teams that today handle these requests via email or chat and need an orderly flow, with real end-to-end traceability.\n\nIt was a team project and within the team my contribution was focused on the entire end-to-end management of requirements: creation with its unique code and linkage to the catalogs (status, priority, type and category), relationships with other entities (creator user, assigned responsible, comments and attachments), and the listing with combinable filters by status, type, category and user participation. I also handled file uploads and the whole transformation before persisting them into the database: type and size validation, name normalization, multipart payload processing and linking to both requirements and comments, making sure every file ends up associated with the correct record and can be retrieved from the detail.",
+      es: "RAIM es una aplicación web para la gestión de requerimientos internos de una organización: incidencias, solicitudes y mejoras. Permite registrar cada pedido con un código único, clasificarlo por tipo, categoría, prioridad y estado, asignarlo a un responsable, seguir su avance con comentarios, adjuntar archivos y ver todo el historial desde un mismo lugar. Incluye además gestión básica de usuarios y departamentos para saber en todo momento quién creó, quién recibe y quién está trabajando cada ticket. Apunta a equipos internos que hoy resuelven estos pedidos por mail o chat y necesitan un flujo ordenado, con trazabilidad real de principio a fin.\n\nFue un proyecto grupal y dentro del equipo mi aporte estuvo centrado en toda la gestión de requerimientos end-to-end: el alta con su código único y la vinculación con los catálogos (estado, prioridad, tipo y categoría), las relaciones con otras entidades (usuario creador, responsable asignado, comentarios y adjuntos), y el listado con filtros combinables por estado, tipo, categoría y participación del usuario. También me encargué de la carga de archivos adjuntos y de toda la transformación previa a persistirlos en la base de datos: validación de tipo y tamaño, normalización del nombre, procesamiento del payload multipart y su vinculación tanto a requerimientos como a comentarios, asegurando que cada archivo quede asociado al registro correcto y se pueda recuperar desde el detalle.",
+    },
+    status: "closed",
     cover: "/raim/1.png",
     gallery: [
       "/raim/1.png",
@@ -166,11 +190,15 @@ export const projects: Project[] = [
   {
     slug: "eventhub",
     name: "EventHub",
-    tagline:
-      "Plataforma web para descubrir y gestionar eventos, de forma sencilla y organizada.",
-    description:
-      "EventHub es una plataforma web pensada para quienes organizan o descubren eventos: permite crear y administrar eventos, listarlos en un dashboard, ver el detalle de cada uno y saber de forma clara cuánto falta para que empiece. Apunta tanto a organizadores que necesitan mantener su catálogo ordenado como a usuarios que quieren explorar solamente los eventos vigentes sin tener que filtrar manualmente los que ya pasaron.\n\nFue un proyecto grupal para una materia en la que partimos de un código base ya existente, por lo que buena parte del trabajo consistió en leer, entender y adaptarnos a decisiones de diseño tomadas por otros antes de sumar funcionalidad nueva. Dentro del equipo mis aportes principales fueron: el módulo de cuenta regresiva hasta la fecha del evento (con el cálculo dinámico de días, horas, minutos y segundos y su integración en la vista de detalle), el diseño de las nuevas entidades y relaciones agregadas a la base de datos, ocultar por defecto los eventos pasados en el dashboard para que el listado siempre muestre lo relevante primero, y toda la configuración de Docker y del pipeline de CI/CD para que el proyecto se pueda levantar y desplegar de forma reproducible. Todo el desarrollo se acompañó con tests automáticos (unitarios y end-to-end con Playwright) para validar cada flujo crítico de la aplicación.",
-    status: "live",
+    tagline: {
+      en: "Web platform to discover and manage events in a simple and organized way.",
+      es: "Plataforma web para descubrir y gestionar eventos, de forma sencilla y organizada.",
+    },
+    description: {
+      en: "EventHub is a web platform designed for anyone who organizes or discovers events: it lets you create and manage events, list them in a dashboard, see the detail of each one and know clearly how much is left before it starts. It targets both organizers who need to keep their catalog tidy and users who want to browse only current events without having to manually filter those that already happened.\n\nIt was a group project for a course where we started from an existing codebase, so a good part of the work consisted of reading, understanding and adapting to design decisions made by others before adding new functionality. Within the team my main contributions were: the countdown module to the event date (with dynamic calculation of days, hours, minutes and seconds and its integration in the detail view), the design of the new entities and relationships added to the database, hiding past events from the dashboard by default so the listing always shows what's relevant first, and the whole Docker and CI/CD pipeline configuration so the project can be spun up and deployed reproducibly. The whole development was accompanied by automated tests (unit and end-to-end with Playwright) to validate every critical flow of the application.",
+      es: "EventHub es una plataforma web pensada para quienes organizan o descubren eventos: permite crear y administrar eventos, listarlos en un dashboard, ver el detalle de cada uno y saber de forma clara cuánto falta para que empiece. Apunta tanto a organizadores que necesitan mantener su catálogo ordenado como a usuarios que quieren explorar solamente los eventos vigentes sin tener que filtrar manualmente los que ya pasaron.\n\nFue un proyecto grupal para una materia en la que partimos de un código base ya existente, por lo que buena parte del trabajo consistió en leer, entender y adaptarnos a decisiones de diseño tomadas por otros antes de sumar funcionalidad nueva. Dentro del equipo mis aportes principales fueron: el módulo de cuenta regresiva hasta la fecha del evento (con el cálculo dinámico de días, horas, minutos y segundos y su integración en la vista de detalle), el diseño de las nuevas entidades y relaciones agregadas a la base de datos, ocultar por defecto los eventos pasados en el dashboard para que el listado siempre muestre lo relevante primero, y toda la configuración de Docker y del pipeline de CI/CD para que el proyecto se pueda levantar y desplegar de forma reproducible. Todo el desarrollo se acompañó con tests automáticos (unitarios y end-to-end con Playwright) para validar cada flujo crítico de la aplicación.",
+    },
+    status: "closed",
     cover: "/eventhub/1.png",
     gallery: ["/eventhub/1.png", "/eventhub/2.png"],
     tech: [
