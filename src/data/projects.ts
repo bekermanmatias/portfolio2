@@ -17,6 +17,37 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    slug: "raim",
+    name: "RAIM",
+    tagline:
+      "Sistema web interno para gestionar incidencias, solicitudes y mejoras dentro de una organización, con trazabilidad completa de cada requerimiento.",
+    description:
+      "RAIM es una aplicación web para la gestión de requerimientos internos de una organización: incidencias, solicitudes y mejoras. Permite registrar cada pedido con un código único, clasificarlo por tipo, categoría, prioridad y estado, asignarlo a un responsable, seguir su avance con comentarios, adjuntar archivos y ver todo el historial desde un mismo lugar. Incluye además gestión básica de usuarios y departamentos para saber en todo momento quién creó, quién recibe y quién está trabajando cada ticket. Apunta a equipos internos que hoy resuelven estos pedidos por mail o chat y necesitan un flujo ordenado, con trazabilidad real de principio a fin.\n\nFue un proyecto grupal y dentro del equipo mi aporte estuvo centrado en toda la gestión de requerimientos end-to-end: el alta con su código único y la vinculación con los catálogos (estado, prioridad, tipo y categoría), las relaciones con otras entidades (usuario creador, responsable asignado, comentarios y adjuntos), y el listado con filtros combinables por estado, tipo, categoría y participación del usuario. También me encargué de la carga de archivos adjuntos y de toda la transformación previa a persistirlos en la base de datos: validación de tipo y tamaño, normalización del nombre, procesamiento del payload multipart y su vinculación tanto a requerimientos como a comentarios, asegurando que cada archivo quede asociado al registro correcto y se pueda recuperar desde el detalle.",
+    status: "live",
+    cover: "/raim/1.png",
+    gallery: [
+      "/raim/1.png",
+      "/raim/2.png",
+      "/raim/3.png",
+      "/raim/4.png",
+      "/raim/5.png",
+      "/raim/6.png",
+      "/raim/7.png",
+    ],
+    tech: [
+      "React",
+      "React Router",
+      "Chakra UI",
+      "Axios",
+      "Node.js",
+      "Express",
+      "Sequelize",
+      "MySQL",
+      "JWT",
+    ],
+    year: 2024
+  },
+  {
     slug: "eventhub",
     name: "EventHub",
     tagline:
