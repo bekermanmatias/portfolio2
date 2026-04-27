@@ -13,6 +13,11 @@ export const metadata: Metadata = {
   title: "Matias Rau Bekerman | Portfolio",
   description:
     "Portfolio of Matias Rau Bekerman, full-stack developer focused on modern, scalable web applications.",
+  icons: {
+    icon: "/b.png",
+    shortcut: "/b.png",
+    apple: "/b.png",
+  },
 };
 
 export default function RootLayout({

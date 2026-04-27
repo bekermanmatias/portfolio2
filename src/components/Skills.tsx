@@ -116,13 +116,16 @@ const IconCss3 = (
 
 const IconCSharp = (
   <svg width="18" height="18" viewBox="0 0 24 24" fill="#512BD4">
-    <path d="M11.5.5A11.5 11.5 0 0 0 0 12a11.5 11.5 0 0 0 11.5 11.5A11.5 11.5 0 0 0 23 12 11.5 11.5 0 0 0 11.5.5zm-3 6.5c1.16 0 2.176.31 2.924.742l-.6 1.14c-.566-.328-1.351-.569-2.196-.569-1.822 0-3.213 1.235-3.213 3.607 0 2.282 1.31 3.622 3.213 3.622.878 0 1.68-.27 2.229-.59l.584 1.148c-.715.42-1.715.732-2.974.732-2.566 0-4.611-1.643-4.611-4.905 0-3.195 2.21-4.927 4.644-4.927zm7.47.84v1.5h1.5v1h-1.5v2h1.5v1h-1.5v1.5h-1v-1.5h-2v1.5h-1v-1.5h-1.5v-1h1.5v-2h-1.5v-1h1.5v-1.5h1v1.5h2v-1.5h1zm-3 2.5v2h2v-2h-2z"/>
+    <path d="M23.642 8.598L13.073.418a1.78 1.78 0 0 0-2.146 0L.358 8.598A1.78 1.78 0 0 0 0 9.738v8.524c0 .547.215 1.063.643 1.388l10.569 6.18c.643.376 1.503.376 2.146 0l10.57-6.18A1.78 1.78 0 0 0 24 18.262V9.738c0-.434-.143-.853-.358-1.14zM12 19.7c-3.78 0-6.857-3.07-6.857-6.85 0-3.78 3.077-6.85 6.857-6.85 2.27 0 4.39.96 5.6 2.55l-2 1.55c-.81-.97-2.02-1.55-3.6-1.55-2.7 0-4.86 2.13-4.86 4.3 0 2.17 2.16 4.3 4.86 4.3 1.58 0 2.79-.58 3.6-1.55l2 1.55c-1.21 1.59-3.33 2.55-5.6 2.55zm5.5-7.5h-.6v.6h-.5v-.6h-.6v-.5h.6v-.6h.5v.6h.6v.5zm2.4 0h-.6v.6h-.5v-.6h-.6v-.5h.6v-.6h.5v.6h.6v.5z"/>
   </svg>
 );
 
 const IconSqlServer = (
   <svg width="18" height="18" viewBox="0 0 24 24" fill="#CC2927">
-    <path d="M3.75 3c-.69 0-1.5.56-1.5 1.25v2.5C2.25 7.44 3.06 8 3.75 8h16.5c.69 0 1.5-.56 1.5-1.25v-2.5C21.75 3.56 20.94 3 20.25 3H3.75zM4.5 4.5h1v1.5h-1V4.5zM3.75 10c-.69 0-1.5.56-1.5 1.25v2.5c0 .69.81 1.25 1.5 1.25h16.5c.69 0 1.5-.56 1.5-1.25v-2.5c0-.69-.81-1.25-1.5-1.25H3.75zm.75 1.5h1V13h-1v-1.5zM3.75 17c-.69 0-1.5.56-1.5 1.25v2.5c0 .69.81 1.25 1.5 1.25h16.5c.69 0 1.5-.56 1.5-1.25v-2.5c0-.69-.81-1.25-1.5-1.25H3.75zm.75 1.5h1V20h-1v-1.5z"/>
+    <ellipse cx="12" cy="4.5" rx="8" ry="2.5" />
+    <path d="M4 7v3.5c0 1.4 3.6 2.5 8 2.5s8-1.1 8-2.5V7c-1.5 1.1-4.6 1.8-8 1.8S5.5 8.1 4 7z" />
+    <path d="M4 13v3.5C4 17.9 7.6 19 12 19s8-1.1 8-2.5V13c-1.5 1.1-4.6 1.8-8 1.8S5.5 14.1 4 13z" />
+    <path d="M4 19v.5C4 20.9 7.6 22 12 22s8-1.1 8-2.5V19c-1.5 1.1-4.6 1.8-8 1.8S5.5 20.1 4 19z" />
   </svg>
 );
 
@@ -133,14 +136,100 @@ const IconOpenAI = (
 );
 
 const IconLucidchart = (
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="#F2B03D">
-    <path d="M12 2L3 7v10l9 5 9-5V7l-9-5zm0 2.3l6.7 3.7-6.7 3.7L5.3 8 12 4.3zM5 9.7l6.5 3.6v7.1L5 16.8V9.7zm14 0v7.1l-6.5 3.6v-7.1L19 9.7z"/>
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+    <path d="M12 2L2 8v8l10 6 10-6V8L12 2z" fill="#F8A11D" />
+    <path d="M12 2L2 8l10 6 10-6-10-6z" fill="#FFCC4D" />
+    <path d="M2 8v8l10 6V14L2 8z" fill="#E07A1A" />
+  </svg>
+);
+
+const IconGoogleCloud = (
+  <svg width="18" height="18" viewBox="0 0 24 24">
+    <path d="M12.19 2.38a9.34 9.34 0 0 0-9.24 6.71 9.31 9.31 0 0 0 0 5.14 1 1 0 0 0 1.93-.53 7.3 7.3 0 0 1 0-4.07 7.34 7.34 0 0 1 14 0 1 1 0 0 0 1.93.53A9.32 9.32 0 0 0 12.19 2.38zM3.86 15.55a1 1 0 0 0-1.93.53 9.34 9.34 0 0 0 14 5.39 1 1 0 1 0-1.13-1.65 7.34 7.34 0 0 1-10.94-4.27z" fill="#4285F4"/>
+    <path d="M19 8.18l-3.18 3.18-1.42-1.41-1.4 1.4 2.82 2.83L21 9.6 19 8.18z" fill="#34A853"/>
+    <circle cx="12" cy="12" r="3" fill="#FBBC04"/>
+  </svg>
+);
+
+const IconPlaywright = (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+    <circle cx="12" cy="12" r="10" fill="#2EAD33" />
+    <path d="M7 9.5c0-1 .8-1.8 1.8-1.8s1.8.8 1.8 1.8" stroke="#fff" strokeWidth="1.2" strokeLinecap="round" fill="none"/>
+    <path d="M13.4 9.5c0-1 .8-1.8 1.8-1.8s1.8.8 1.8 1.8" stroke="#fff" strokeWidth="1.2" strokeLinecap="round" fill="none"/>
+    <circle cx="9" cy="10" r="0.9" fill="#fff" />
+    <circle cx="15.2" cy="10" r="0.9" fill="#fff" />
+    <path d="M7.5 14c1 1.6 2.7 2.6 4.5 2.6s3.5-1 4.5-2.6" stroke="#fff" strokeWidth="1.4" strokeLinecap="round" fill="none"/>
+  </svg>
+);
+
+const IconAzure = (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="#0078D4">
+    <path d="M5.483 21.3h17.215L13.297 5.058l-4.604 7.94 5.484 6.5L5.483 21.3zM10.103 2.7L1.302 17.66l4.879.001 8.81-15.42-4.888.001z"/>
   </svg>
 );
 
 const IconExcel = (
   <svg width="18" height="18" viewBox="0 0 24 24" fill="#217346">
     <path d="M14.5 2H7a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h13a2 2 0 0 0 2-2V9.5L14.5 2zM14 9V3.5L19.5 9H14zM9.5 12h1.6l1.4 2.2 1.4-2.2H15.5l-2.2 3.3 2.3 3.5H14l-1.5-2.4-1.5 2.4H9.4l2.3-3.5L9.5 12z"/>
+  </svg>
+);
+
+const IconEsp32 = (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="#E7352C">
+    <path d="M6 6h12v12H6z" />
+    <path d="M3 9h2v2H3zM3 13h2v2H3zM19 9h2v2h-2zM19 13h2v2h-2zM9 3h2v2H9zM13 3h2v2h-2zM9 19h2v2H9zM13 19h2v2h-2z" />
+  </svg>
+);
+
+const IconIot = (
+  <svg
+    width="18"
+    height="18"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.8"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className="text-cyan-600"
+  >
+    <rect x="7" y="11" width="10" height="9" rx="1.5" />
+    <path d="M9 14h.01M12 14h.01M15 14h.01M9 17h.01M12 17h.01M15 17h.01" />
+    <path d="M8 8.5a4 4 0 0 1 8 0" />
+    <path d="M5 6a7 7 0 0 1 14 0" />
+  </svg>
+);
+
+const IconServerless = (
+  <svg
+    width="18"
+    height="18"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.8"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className="text-amber-600"
+  >
+    <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z" />
+    <polyline points="13 11 9 13 13 15 9 17" />
+  </svg>
+);
+
+const IconRestApi = (
+  <svg
+    width="18"
+    height="18"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.8"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className="text-rose-600"
+  >
+    <path d="M3 12h3l2-5 4 10 2-5h7" />
   </svg>
 );
 
@@ -153,14 +242,20 @@ const SKILLS: Skill[] = [
   { name: "PostgreSQL", slug: "postgresql" },
   { name: "Docker", slug: "docker" },
   { name: "AWS", custom: IconAws },
+  { name: "Google Cloud", custom: IconGoogleCloud },
+  { name: "Azure", custom: IconAzure },
   { name: "Tailwind CSS", slug: "tailwindcss" },
 
   { name: "JavaScript", slug: "javascript" },
   { name: "React Native", slug: "react" },
+  { name: "Expo", slug: "expo" },
   { name: "Astro", slug: "astro" },
+  { name: "Vite", slug: "vite" },
   { name: "HTML5", slug: "html5" },
   { name: "CSS3", custom: IconCss3 },
+  { name: "Sass / SCSS", slug: "sass" },
   { name: "Express", slug: "express" },
+  { name: "Sequelize", slug: "sequelize" },
   { name: "Django", slug: "django" },
   { name: ".NET", slug: "dotnet" },
   { name: "C#", custom: IconCSharp },
@@ -168,12 +263,20 @@ const SKILLS: Skill[] = [
   { name: "Kotlin", slug: "kotlin" },
   { name: "Java", slug: "openjdk" },
   { name: "Supabase", slug: "supabase" },
+  { name: "Firebase", slug: "firebase" },
   { name: "MySQL", slug: "mysql" },
   { name: "SQL Server", custom: IconSqlServer },
+  { name: "SQLite", slug: "sqlite" },
   { name: "MongoDB", slug: "mongodb" },
+  { name: "JWT", slug: "jsonwebtokens" },
+  { name: "REST APIs", custom: IconRestApi },
   { name: "Vercel", slug: "vercel" },
+  { name: "Serverless", custom: IconServerless },
+  { name: "IoT", custom: IconIot },
+  { name: "ESP32", custom: IconEsp32 },
   { name: "Git", slug: "git" },
   { name: "GitHub Actions", slug: "githubactions" },
+  { name: "Playwright", custom: IconPlaywright },
   { name: "Linux", slug: "linux" },
   { name: "OpenAI", custom: IconOpenAI },
   { name: "AI Integration", custom: IconAi },

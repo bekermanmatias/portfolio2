@@ -224,7 +224,7 @@ export default function Home() {
         {/* Banner + avatar */}
         <section>
           <div className="overflow-hidden rounded-xl border border-zinc-200">
-            <div className="relative h-44 w-full overflow-hidden">
+            <div className="relative h-32 w-full overflow-hidden sm:h-44">
               <Image
                 src="/fondo.png"
                 alt="Banner"
@@ -235,8 +235,8 @@ export default function Home() {
               />
             </div>
           </div>
-          <div className="mt-3 flex items-end gap-4 px-1">
-            <div className="relative z-10 -mt-16 h-28 w-28 shrink-0 overflow-hidden rounded-full border-4 border-white shadow-md transition-transform duration-300 hover:scale-110">
+          <div className="mt-3 flex items-end gap-3 px-1 sm:gap-4">
+            <div className="relative z-10 -mt-12 h-24 w-24 shrink-0 overflow-hidden rounded-full border-4 border-white shadow-md transition-transform duration-300 hover:scale-110 sm:-mt-16 sm:h-28 sm:w-28">
               <Image
                 src="/matias.png"
                 alt="Matias Rau Bekerman"

@@ -59,6 +59,37 @@ export const projects: Project[] = [
     year: 2026,
   },
   {
+    slug: "salgest",
+    name: "Salgest",
+    tagline: {
+      en: "AgTech IoT platform for real-time grain silo monitoring, with telemetry, in-silo vision and intelligent alerts deployed end to end on AWS.",
+      es: "Plataforma AgTech IoT para monitoreo en tiempo real de silos de granos, con telemetría, visión interior y alertas inteligentes desplegada de punta a punta sobre AWS.",
+    },
+    description: {
+      en: "Salgest is an integral AgTech platform designed to monitor grain storage silos in real time, replacing dangerous manual inspections with precision telemetry from ESP32 sensors and visual inspection through onboard cameras. The system reads temperature, humidity, gases, pressure and ultrasonic distance to compute physical stock (level %, tons, dew point, air quality index) and runs a server-side rules engine that generates intelligent alerts for active fermentation, condensation risk, sudden level drops, heat foci, communication loss and more. Each user manages their own silos under a multi-tenant model, with a global gallery, visual history synchronized with sensor timeline, topographic heatmaps and a dashboard of active and historical alerts.\n\nIt was built solo as the final project for the Cloud Software Development course at UTN FRLP. The whole stack is deployed on AWS: a Node.js + Express API on EC2 that also serves the React + Vite SPA, PostgreSQL on RDS for relational data (users, silos, sensor_data, alerts, alert configs, gallery captures), and S3 for storing the silo photos sent by the ESP32 (uploaded via multer-s3 with public URLs persisted in the DB). Authentication uses JWT with multi-tenant isolation at every query, the IoT protocol is HTTP multipart/form-data tying each device to a silo via a kit_code, and the frontend renders charts with Recharts and Plotly plus a custom topographic heatmap. The roadmap contemplates a geospatial module with React Leaflet, executive PDF/Excel reports and predictive models (ARIMA / LSTM) to anticipate stock depletion and putrefaction.",
+      es: "Salgest es una plataforma AgTech integral diseñada para monitorear silos de almacenamiento de granos en tiempo real, reemplazando inspecciones manuales peligrosas con telemetría de precisión desde sensores ESP32 e inspección visual mediante cámara embarcada. El sistema lee temperatura, humedad, gases, presión y distancia ultrasónica para calcular el stock físico (nivel %, toneladas, punto de rocío, índice de calidad del aire) y ejecuta un motor de reglas en el servidor que dispara alertas inteligentes ante fermentación activa, riesgo de condensación, descensos bruscos de nivel, focos de calor, pérdida de comunicación y más. Cada usuario gestiona sus propios silos bajo un modelo multi-tenant, con galería global, historial visual sincronizado con la línea temporal de sensores, mapas de calor topográficos y un dashboard de alertas activas e históricas.\n\nLo desarrollé solo como trabajo práctico final de la materia Desarrollo de Software Cloud en la UTN FRLP. Todo el stack está desplegado sobre AWS: una API Node.js + Express corriendo en EC2 que además sirve la SPA React + Vite, PostgreSQL en RDS para los datos relacionales (users, silos, sensor_data, alerts, alert configs, gallery captures), y S3 para guardar las fotos de los silos que envía el ESP32 (subidas con multer-s3 y URLs públicas persistidas en la DB). La autenticación usa JWT con aislamiento multi-tenant en cada query, el protocolo IoT es HTTP multipart/form-data que ata cada dispositivo a un silo mediante un kit_code, y el frontend renderiza gráficos con Recharts y Plotly junto con un mapa de calor topográfico propio. El roadmap contempla un módulo geoespacial con React Leaflet, reportes ejecutivos PDF/Excel y modelos predictivos (ARIMA / LSTM) para anticipar agotamiento de stock y putrefacción.",
+    },
+    status: "building",
+    cover: "/salgest/1.png",
+    gallery: ["/salgest/1.png"],
+    demo: "https://youtu.be/J5fz-ZG7sRA",
+    tech: [
+      "React",
+      "Vite",
+      "Node.js",
+      "Express",
+      "PostgreSQL",
+      "AWS EC2",
+      "AWS RDS",
+      "AWS S3",
+      "JWT",
+      "ESP32",
+      "Recharts",
+      "Plotly",
+    ],
+    year: 2026,
+  },
+  {
     slug: "solar360",
     name: "Solar360",
     tagline: {
