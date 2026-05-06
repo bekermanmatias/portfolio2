@@ -25,16 +25,16 @@ export const dict: Dictionary = {
   },
 
   "bio.p1": {
-    en: "Hey, I'm Matias, I build modern, scalable web applications with a mindset oriented toward creative problem-solving and clean architecture. As a 5th-year Systems Engineering student, I don't just write code; I design systems.",
-    es: "Hola, soy Matias. Construyo aplicaciones web modernas y escalables con una mentalidad orientada a la resolución creativa de problemas y a una arquitectura limpia. Como estudiante de 5to año de Ingeniería en Sistemas, no solo escribo código: diseño sistemas.",
+    en: "Hi, I'm Matias. I build modern, scalable web applications with a mindset focused on creative problem-solving. As a 5th-year Systems Engineering student, my premise is clear: I don't just write code, I design systems.",
+    es: "Hola, soy Matias. Construyo aplicaciones web modernas y escalables con una mentalidad orientada a la resolución creativa de problemas. Como estudiante de 5to año de Ingeniería en Sistemas, mi premisa es clara: no solo escribo código, diseño sistemas.",
   },
   "bio.p2": {
-    en: "My technical stack covers the entire development lifecycle—from crafting pixel-perfect interfaces with React and Astro, to modeling complex relational databases in PostgreSQL and building secure APIs. To stay ahead of industry standards, I actively incorporate Cloud technologies and AI-driven solutions into my workflows, ensuring my projects are efficient, scalable, and innovative.",
-    es: "Mi stack técnico cubre todo el ciclo de desarrollo: desde interfaces cuidadas al detalle con React y Astro, hasta el modelado de bases de datos relacionales complejas en PostgreSQL y la construcción de APIs seguras. Para mantenerme al día con los estándares de la industria, incorporo activamente tecnologías Cloud y soluciones basadas en IA a mi flujo de trabajo, asegurando proyectos eficientes, escalables e innovadores.",
+    en: "I fundamentally understand modern software development as an architecture challenge rather than a framework-specific one. Since I was trained from algorithmic and logical foundations, I can adapt quickly to any ecosystem or technology stack. My experience covers the entire development lifecycle: from front-end interfaces carefully crafted for users, to modeling complex relational databases and building secure backend APIs.",
+    es: "Entiendo el desarrollo de software actual fundamentalmente como un desafío de arquitectura y no de frameworks específicos. Al haberme formado desde las bases algorítmicas y lógicas, tengo la flexibilidad de desenvolverme y adaptarme rápidamente a cualquier ecosistema o stack tecnológico. Mi experiencia cubre todo el ciclo de desarrollo: desde interfaces front-end cuidadas al detalle para el usuario, hasta el modelado de bases de datos relacionales complejas y la construcción de APIs seguras en el backend.",
   },
   "bio.p3": {
-    en: "I am a proactive team player, comfortable working with Agile methodologies, version control (Git), and continuous integration. I care about a smooth user experience, and the small details are what make it happen.",
-    es: "Soy proactivo en equipo y me muevo cómodo con metodologías ágiles, control de versiones (Git) e integración continua. Me interesa una experiencia de usuario fluida y los detalles pequeños ayudan a eso.",
+    en: "To stay ahead, I actively integrate Cloud technologies and AI tools into my workflows. I am proactive in team environments, comfortable working with Agile methodologies (Git, CI/CD), and I strongly believe that clean architecture behind the scenes is what guarantees a smooth, frictionless user experience up front.",
+    es: "Para mantenerme a la vanguardia, incorporo activamente tecnologías Cloud y herramientas de IA a mis flujos de trabajo. Soy proactivo en equipo, trabajo cómodo bajo metodologías ágiles (Git, CI/CD) y creo firmemente que una arquitectura limpia por detrás es lo que garantiza una experiencia de usuario fluida y sin fricciones por delante.",
   },
   "bio.location": {
     en: "La Plata, Argentina",
