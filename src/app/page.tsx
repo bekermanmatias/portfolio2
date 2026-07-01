@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import Image from "next/image";
 import Link from "next/link";
@@ -40,7 +40,7 @@ const IconResume = () => (
 const GITHUB_URL = "https://github.com/bekermanmatias";
 const LINKEDIN_URL =
   "https://www.linkedin.com/in/matias-rau-bekerman-32a614199/?skipRedirect=true";
-const RESUME_URL = "/MATIAS%20RAU%20BEKERMAN.pdf";
+const RESUME_URL = "/CV%20Matias%20Rau%20Bekerman.pdf";
 
 type SocialLink = {
   label: string;
@@ -54,7 +54,7 @@ function SocialButton({ label, href, icon, download }: SocialLink) {
     <a
       href={href}
       {...(download
-        ? { download: "MATIAS RAU BEKERMAN.pdf" }
+        ? { download: "CV Matias Rau Bekerman.pdf" }
         : { target: "_blank", rel: "noreferrer" })}
       className="flex items-center gap-1.5 rounded-md border border-zinc-300 px-3 py-1.5 text-xs font-medium text-zinc-700 transition hover:border-zinc-400 hover:bg-zinc-50"
     >
