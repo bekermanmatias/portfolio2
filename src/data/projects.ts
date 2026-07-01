@@ -20,6 +20,44 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    slug: "loqueleo",
+    name: "Concurso Loqueleo [PRODUCCIÓN]",
+    tagline: {
+      en: "High-concurrency web platform for the comprehensive management of school contests: registrations, schools, and secure reception of multimedia deliverables.",
+      es: "Plataforma web de alta concurrencia para la gestión integral de certámenes escolares: inscripciones, colegios y recepción segura de entregables multimedia."
+    },
+    url: "https://concursope.loqueleo.com/",
+    description: {
+      en: "Concurso Loqueleo is a platform designed to support the massive load of a national school contest. The system allows participants to register through an interactive step-by-step wizard and upload their final works (PDF documents and heavy videos). The great challenge of this project was to design an architecture capable of supporting extreme traffic spikes during delivery deadlines, being validated to handle over 10,000 enrollments without the system slowing down. To achieve this, a 100% cloud-oriented (Serverless) solution was designed that decentralizes the load, separating frontend consumption, backend processing, and file storage.\n\nI worked on this project as a Freelance Full-Stack Developer, taking charge of the architecture design and end-to-end development. I implemented the frontend with Astro deployed on Cloudflare Pages to ensure almost instantaneous load times, and developed a REST API in Node.js/Express hosted in an auto-scalable way on Google Cloud Run. Data management was centralized in Supabase (PostgreSQL), while the massive storage of deliverables was resolved by integrating Cloudflare R2 (S3 API). To ensure quality, I parameterized the local environment with Docker and automated deployments with GitHub Actions. The project was successfully finished and delivered, and is currently operating in production.",
+      es: "Concurso Loqueleo es una plataforma diseñada para soportar la carga masiva de un certamen escolar a nivel nacional. El sistema permite a los participantes registrarse a través de un asistente por pasos (wizard) interactivo y subir sus trabajos finales (documentos PDF y videos pesados). El gran desafío de este proyecto fue diseñar una arquitectura capaz de soportar picos extremos de tráfico durante las fechas límite de entrega, siendo validada para recibir a más de 10.000 inscriptos sin que el sistema se ralentice. Para lograrlo, se diseñó una solución 100% orientada a la nube (Serverless) que descentraliza la carga, separando el consumo del frontend, el procesamiento del backend y el almacenamiento de los archivos.\n\nTrabajé en este proyecto como Desarrollador Full-Stack Freelance, encargándome del diseño de la arquitectura y el desarrollo end-to-end. Implementé el frontend con Astro desplegado en Cloudflare Pages para asegurar tiempos de carga casi instantáneos, y desarrollé una API REST en Node.js/Express alojada de forma auto-escalable en Google Cloud Run. La gestión de datos se centralizó en Supabase (PostgreSQL), mientras que el almacenamiento masivo de los entregables se resolvió integrando Cloudflare R2 (API S3). Para garantizar la calidad, parametricé el entorno local con Docker y automaticé los despliegues con GitHub Actions. El proyecto fue finalizado y entregado con éxito, y se encuentra actualmente operando en producción."
+    },
+    status: "live",
+    cover: "/loqueleo/con1.png",
+    gallery: [
+      "/loqueleo/con1.png",
+      "/loqueleo/con2.png",
+      "/loqueleo/con3.png",
+      "/loqueleo/con4.png",
+      "/loqueleo/con5.png",
+      "/loqueleo/con6.png",
+      "/loqueleo/con7.png",
+      "/loqueleo/con8.png",
+      "/loqueleo/con9.png"
+    ],
+    tech: [
+      "Astro",
+      "Node.js",
+      "Express",
+      "Supabase",
+      "PostgreSQL",
+      "Google Cloud",
+      "Cloudflare R2",
+      "Docker",
+      "CI/CD"
+    ],
+    year: 2026,
+  },
+  {
     slug: "odontapp",
     name: "OdontApp",
     tagline: {

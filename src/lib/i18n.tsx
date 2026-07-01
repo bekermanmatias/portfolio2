@@ -25,16 +25,16 @@ export const dict: Dictionary = {
   },
 
   "bio.p1": {
-    en: "Hi, I'm Matias. I build modern, scalable web applications with a mindset focused on creative problem-solving. As a 5th-year Systems Engineering student, my premise is clear: I don't just write code, I design systems.",
-    es: "Hola, soy Matias. Construyo aplicaciones web modernas y escalables con una mentalidad orientada a la resolución creativa de problemas. Como estudiante de 5to año de Ingeniería en Sistemas, mi premisa es clara: no solo escribo código, diseño sistemas.",
+    en: "Hi, I'm Matias. I build modern, scalable web applications with a mindset focused on creative problem-solving. As a 5th-year Systems Engineering student, my premise is clear: I don't just write code, I design high-concurrency systems.",
+    es: "Hola, soy Matias. Construyo aplicaciones web modernas y escalables con una mentalidad orientada a la resolución creativa de problemas. Como estudiante de 5to año de Ingeniería en Sistemas, mi premisa es clara: no solo escribo código, diseño sistemas de alta concurrencia.",
   },
   "bio.p2": {
-    en: "I fundamentally understand modern software development as an architecture challenge rather than a framework-specific one. Since I was trained from algorithmic and logical foundations, I can adapt quickly to any ecosystem or technology stack. My experience covers the entire development lifecycle: from front-end interfaces carefully crafted for users, to modeling complex relational databases and building secure backend APIs.",
-    es: "Entiendo el desarrollo de software actual fundamentalmente como un desafío de arquitectura y no de frameworks específicos. Al haberme formado desde las bases algorítmicas y lógicas, tengo la flexibilidad de desenvolverme y adaptarme rápidamente a cualquier ecosistema o stack tecnológico. Mi experiencia cubre todo el ciclo de desarrollo: desde interfaces front-end cuidadas al detalle para el usuario, hasta el modelado de bases de datos relacionales complejas y la construcción de APIs seguras en el backend.",
+    en: "I have a proven track record managing end-to-end projects: from requirement gathering and Cloud (Serverless) infrastructure design, to full-stack development and automated deployment (CI/CD) in production.",
+    es: "Cuento con historial comprobable gestionando proyectos end-to-end: desde el relevamiento y diseño de infraestructura Cloud (Serverless), hasta el desarrollo full-stack y el despliegue automatizado (CI/CD) en producción.",
   },
   "bio.p3": {
-    en: "To stay ahead, I actively integrate Cloud technologies and AI tools into my workflows. I am proactive in team environments, comfortable working with Agile methodologies (Git, CI/CD), and I strongly believe that clean architecture behind the scenes is what guarantees a smooth, frictionless user experience up front.",
-    es: "Para mantenerme a la vanguardia, incorporo activamente tecnologías Cloud y herramientas de IA a mis flujos de trabajo. Soy proactivo en equipo, trabajo cómodo bajo metodologías ágiles (Git, CI/CD) y creo firmemente que una arquitectura limpia por detrás es lo que garantiza una experiencia de usuario fluida y sin fricciones por delante.",
+    en: "I am passionate about transforming complex business problems into efficient and robust technological products, always ensuring that clean architecture behind the scenes results in a smooth, frictionless user experience.",
+    es: "Me apasiona transformar problemas de negocio complejos en productos tecnológicos eficientes y robustos, garantizando siempre que una arquitectura limpia por detrás resulte en una experiencia de usuario fluida y sin fricciones.",
   },
   "bio.location": {
     en: "La Plata, Argentina",
