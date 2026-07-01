@@ -38,8 +38,7 @@ const IconResume = () => (
 );
 
 const GITHUB_URL = "https://github.com/bekermanmatias";
-const LINKEDIN_URL =
-  "https://www.linkedin.com/in/matias-rau-bekerman-32a614199/?skipRedirect=true";
+const LINKEDIN_URL = "https://www.linkedin.com/in/bekermanmatias/";
 const RESUME_URL = "/CV%20Matias%20Rau%20Bekerman.pdf";
 
 type SocialLink = {
