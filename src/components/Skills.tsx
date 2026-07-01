@@ -2,6 +2,8 @@
 
 import { useState, type ReactNode } from "react";
 import { useLanguage } from "@/lib/i18n";
+import { SiGooglecloud } from "react-icons/si";
+import { VscAzure } from "react-icons/vsc";
 
 type Skill = {
   name: string;
@@ -114,11 +116,7 @@ const IconCss3 = (
   </svg>
 );
 
-const IconCSharp = (
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="#512BD4">
-    <path d="M23.642 8.598L13.073.418a1.78 1.78 0 0 0-2.146 0L.358 8.598A1.78 1.78 0 0 0 0 9.738v8.524c0 .547.215 1.063.643 1.388l10.569 6.18c.643.376 1.503.376 2.146 0l10.57-6.18A1.78 1.78 0 0 0 24 18.262V9.738c0-.434-.143-.853-.358-1.14zM12 19.7c-3.78 0-6.857-3.07-6.857-6.85 0-3.78 3.077-6.85 6.857-6.85 2.27 0 4.39.96 5.6 2.55l-2 1.55c-.81-.97-2.02-1.55-3.6-1.55-2.7 0-4.86 2.13-4.86 4.3 0 2.17 2.16 4.3 4.86 4.3 1.58 0 2.79-.58 3.6-1.55l2 1.55c-1.21 1.59-3.33 2.55-5.6 2.55zm5.5-7.5h-.6v.6h-.5v-.6h-.6v-.5h.6v-.6h.5v.6h.6v.5zm2.4 0h-.6v.6h-.5v-.6h-.6v-.5h.6v-.6h.5v.6h.6v.5z"/>
-  </svg>
-);
+
 
 const IconSqlServer = (
   <svg width="18" height="18" viewBox="0 0 24 24" fill="#CC2927">
@@ -129,27 +127,9 @@ const IconSqlServer = (
   </svg>
 );
 
-const IconOpenAI = (
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="#000000">
-    <path d="M22.2819 9.8211a5.9847 5.9847 0 0 0-.5157-4.9108 6.0462 6.0462 0 0 0-6.5098-2.9A6.0651 6.0651 0 0 0 4.9807 4.1818a5.9847 5.9847 0 0 0-3.9977 2.9 6.0462 6.0462 0 0 0 .7427 7.0966 5.98 5.98 0 0 0 .511 4.9107 6.051 6.051 0 0 0 6.5146 2.9001A5.9847 5.9847 0 0 0 13.2599 24a6.0557 6.0557 0 0 0 5.7718-4.2058 5.9894 5.9894 0 0 0 3.9977-2.9001 6.0557 6.0557 0 0 0-.7475-7.0729zm-9.022 12.6081a4.4755 4.4755 0 0 1-2.8764-1.0408l.1419-.0804 4.7783-2.7582a.7948.7948 0 0 0 .3927-.6813v-6.7369l2.02 1.1686a.071.071 0 0 1 .038.052v5.5826a4.504 4.504 0 0 1-4.4945 4.4944zm-9.6607-4.1254a4.4708 4.4708 0 0 1-.5346-3.0137l.142.0852 4.783 2.7582a.7712.7712 0 0 0 .7806 0l5.8428-3.3685v2.3324a.0804.0804 0 0 1-.0332.0615L9.74 19.9502a4.4992 4.4992 0 0 1-6.1408-1.6464zM2.3408 7.8956a4.485 4.485 0 0 1 2.3655-1.9728V11.6a.7664.7664 0 0 0 .3879.6765l5.8144 3.3543-2.0201 1.1685a.0757.0757 0 0 1-.071 0l-4.8303-2.7865A4.504 4.504 0 0 1 2.3408 7.872zm16.5963 3.8558L13.1038 8.364 15.1192 7.2a.0757.0757 0 0 1 .071 0l4.8303 2.7913a4.4944 4.4944 0 0 1-.6765 8.1042v-5.6772a.79.79 0 0 0-.407-.667zm2.0107-3.0231l-.142-.0852-4.7735-2.7818a.7759.7759 0 0 0-.7854 0L9.409 9.2297V6.8974a.0662.0662 0 0 1 .0284-.0615l4.8303-2.7866a4.4992 4.4992 0 0 1 6.6802 4.66zM8.3065 12.863l-2.02-1.1638a.0804.0804 0 0 1-.038-.0567V6.0742a4.4992 4.4992 0 0 1 7.3757-3.4537l-.142.0805L8.704 5.459a.7948.7948 0 0 0-.3927.6813zm1.0976-2.3654l2.602-1.4998 2.6069 1.4998v2.9994l-2.5974 1.4997-2.6067-1.4997Z"/>
-  </svg>
-);
 
-const IconLucidchart = (
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-    <path d="M12 2L2 8v8l10 6 10-6V8L12 2z" fill="#F8A11D" />
-    <path d="M12 2L2 8l10 6 10-6-10-6z" fill="#FFCC4D" />
-    <path d="M2 8v8l10 6V14L2 8z" fill="#E07A1A" />
-  </svg>
-);
 
-const IconGoogleCloud = (
-  <svg width="18" height="18" viewBox="0 0 24 24">
-    <path d="M12.19 2.38a9.34 9.34 0 0 0-9.24 6.71 9.31 9.31 0 0 0 0 5.14 1 1 0 0 0 1.93-.53 7.3 7.3 0 0 1 0-4.07 7.34 7.34 0 0 1 14 0 1 1 0 0 0 1.93.53A9.32 9.32 0 0 0 12.19 2.38zM3.86 15.55a1 1 0 0 0-1.93.53 9.34 9.34 0 0 0 14 5.39 1 1 0 1 0-1.13-1.65 7.34 7.34 0 0 1-10.94-4.27z" fill="#4285F4"/>
-    <path d="M19 8.18l-3.18 3.18-1.42-1.41-1.4 1.4 2.82 2.83L21 9.6 19 8.18z" fill="#34A853"/>
-    <circle cx="12" cy="12" r="3" fill="#FBBC04"/>
-  </svg>
-);
+const IconGoogleCloud = <SiGooglecloud color="#4285F4" size={18} />;
 
 const IconPlaywright = (
   <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
@@ -162,11 +142,7 @@ const IconPlaywright = (
   </svg>
 );
 
-const IconAzure = (
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="#0078D4">
-    <path d="M5.483 21.3h17.215L13.297 5.058l-4.604 7.94 5.484 6.5L5.483 21.3zM10.103 2.7L1.302 17.66l4.879.001 8.81-15.42-4.888.001z"/>
-  </svg>
-);
+const IconAzure = <VscAzure color="#0078D4" size={18} />;
 
 const IconExcel = (
   <svg width="18" height="18" viewBox="0 0 24 24" fill="#217346">
@@ -258,7 +234,6 @@ const SKILLS: Skill[] = [
   { name: "Sequelize", slug: "sequelize" },
   { name: "Django", slug: "django" },
   { name: ".NET", slug: "dotnet" },
-  { name: "C#", custom: IconCSharp },
   { name: "C++", slug: "cplusplus" },
   { name: "Kotlin", slug: "kotlin" },
   { name: "Java", slug: "openjdk" },
@@ -270,7 +245,6 @@ const SKILLS: Skill[] = [
   { name: "MongoDB", slug: "mongodb" },
   { name: "JWT", slug: "jsonwebtokens" },
   { name: "REST APIs", custom: IconRestApi },
-  { name: "Vercel", slug: "vercel" },
   { name: "Serverless", custom: IconServerless },
   { name: "IoT", custom: IconIot },
   { name: "ESP32", custom: IconEsp32 },
@@ -278,11 +252,9 @@ const SKILLS: Skill[] = [
   { name: "GitHub Actions", slug: "githubactions" },
   { name: "Playwright", custom: IconPlaywright },
   { name: "Linux", slug: "linux" },
-  { name: "OpenAI", custom: IconOpenAI },
   { name: "AI Integration", custom: IconAi },
   { name: "Prompt Engineering", custom: IconPrompt },
   { name: "Figma", slug: "figma" },
-  { name: "Lucidchart", custom: IconLucidchart },
   { name: "UML", custom: IconUml },
   { name: "MATLAB", custom: IconMatlab },
   { name: "Excel", custom: IconExcel },
